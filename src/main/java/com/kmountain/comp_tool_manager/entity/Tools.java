@@ -2,12 +2,20 @@ package com.kmountain.comp_tool_manager.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(schema = "manager", name = "tools")
+/**
+ * 備品テーブル
+ * 
+ * @author k_yamamoto
+ *
+ */
 public class Tools {
 
 	/**
@@ -27,7 +35,9 @@ public class Tools {
 	/**
 	 * 一般名or型式
 	 */
-	private String productId;
+	@ManyToOne
+	@JoinColumn(name = "productId", referencedColumnName = "productId")
+	private Specification specification;
 	/**
 	 *	管理名称 
 	 */

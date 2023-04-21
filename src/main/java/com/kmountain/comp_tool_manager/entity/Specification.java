@@ -7,18 +7,18 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(schema = "manager", name = "category")
+@Table(schema = "manager", name = "specification")
 /**
- * 備品カテゴリマスタ
+ * 型番に対する共通情報テーブル
  * 
  * @author k_yamamoto
  *
  */
-public class Category {
+public class Specification {
 
 	@Id
-	private Integer catNumber;
+	private String productId;
 
-	private String catName;
+	private String commonInfo;
 
 }

@@ -8,6 +8,12 @@ import lombok.Data;
 @Data
 @Entity
 @Table(schema = "manager", name = "lend_status")
+/**
+ * 貸出状況
+ * 
+ * @author k_yamamoto
+ *
+ */
 public class LendStatus {
 
 	/**

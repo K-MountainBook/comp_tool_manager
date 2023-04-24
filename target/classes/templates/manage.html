@@ -17,7 +17,11 @@
 				<a th:href="@{/remove}">備品削除</a><span style="color: red; font-size: 0.7em">(※削除は基本的に利用しません。)</span>
 			</li>
 		</ul>
+		<th:block th:each="row : ${data}">
+		test
+		</th:block>
 	</div>
+
 	<div th:replace="~{footer :: footer}"></div>
 </body>
 </html>

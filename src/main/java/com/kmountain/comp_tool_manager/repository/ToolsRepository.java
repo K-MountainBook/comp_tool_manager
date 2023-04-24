@@ -1,4 +1,4 @@
-package com.kmountain.comp_tool_manager.controller.repository;
+package com.kmountain.comp_tool_manager.repository;
 
 import java.util.List;
 

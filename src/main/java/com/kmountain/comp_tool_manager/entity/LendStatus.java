@@ -17,13 +17,13 @@ import lombok.Data;
 public class LendStatus {
 
 	/**
-	 * ID
+	 * code
 	 */
 	@Id
-	private String lendId;
+	private String code;
 
 	/**
 	 * 貸出状態
 	 */
-	private Byte lendStatus;
+	private String lendStatus;
 }

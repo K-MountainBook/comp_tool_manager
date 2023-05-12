@@ -58,5 +58,11 @@ public class Tools {
 	 * 備考
 	 */
 	private String remarks;
+	/**
+	 * 貸出ステータス
+	 */
+	@ManyToOne
+	@JoinColumn(name = "lend_status")
+	private LendStatus lendStatus;
 
 }

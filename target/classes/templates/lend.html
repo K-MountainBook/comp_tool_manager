@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head th:replace="~{header :: common_header(~{::title})}">
+<title>備品管理システム - 貸出/返却</title>
+</head>
+<body lang="ja">
+	<div th:replace="~{header :: header}"></div>
+	<div class="container">
+		<div id="submenu">
+			<h1>備品検索</h1>
+			<form th:object="${searchform}" th:action="@{/lend}" th:method="POST">
+				<select th:field="*{category}" th:id="*{category}" class="form-select" aria-label="備品カテゴリ">
+					<option value="">備品カテゴリ</option>
+					<option th:each="category : ${categoryList}" th:value="${category.catNumber}" th:text="${category.catName}"></option>
+				</select>
+			</form>
+		</div>
+	</div>
+	<div th:replace="~{footer :: footer}"></div>
+</body>
+</html>

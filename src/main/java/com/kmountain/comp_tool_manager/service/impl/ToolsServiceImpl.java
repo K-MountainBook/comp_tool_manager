@@ -12,8 +12,12 @@ import com.kmountain.comp_tool_manager.service.ToolsService;
 @Service
 public class ToolsServiceImpl implements ToolsService {
 
+	private final ToolsRepository toolsRepository;
+
 	@Autowired
-	ToolsRepository toolsRepository;
+	public ToolsServiceImpl(ToolsRepository toolsRepository) {
+		this.toolsRepository = toolsRepository;
+	}
 
 	/**
 	 * Toolsテーブルの全検索

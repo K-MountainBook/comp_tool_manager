@@ -10,11 +10,14 @@
 			<div class="row">
 				<!-- LendID -->
 				<div class="col mb-3">
-					<label th:for="lendId">備品ID（自動採番）</label> <input type="text" th:field="*{lendId}" th:id="*{lendId}" class="form-control">
+					<label th:for="lendId">備品ID（自動採番）</label> <input type="text" th:field="*{lendId}" th:id="*{lendId}" class="form-control" readonly>
 				</div>
 				<!-- カテゴリ -->
 				<div class="col mb-3">
-					<label th:for="category">カテゴリ</label> <input type="text" th:field="*{category}" th:id="*{category}" class="form-control">
+					<label th:for="category">カテゴリ</label> <select th:field="*{category}" th:id="*{category}" class="form-control">
+						<option value="">選択してください</option>
+						<option th:each="cat: ${categoryList}" th:value="${cat.catNumber}" th:text="${cat.catName}"></option>
+					</select>
 				</div>
 			</div>
 			<div class="row">

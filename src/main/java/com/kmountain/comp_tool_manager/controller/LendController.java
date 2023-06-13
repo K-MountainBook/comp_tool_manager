@@ -16,7 +16,8 @@ import com.kmountain.comp_tool_manager.service.CategoryService;
 @RequestMapping("lend")
 public class LendController {
 
-	private final CategoryService categoryService;
+	@Autowired
+	CategoryService categoryService;
 
 	@Autowired
 	public LendController(CategoryService categoryService) {

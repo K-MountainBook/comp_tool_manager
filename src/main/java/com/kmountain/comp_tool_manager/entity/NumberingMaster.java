@@ -7,20 +7,18 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(schema = "manager", name = "category")
+@Table(schema = "manager", name = "number_manager")
 /**
- * 備品カテゴリマスタ
+ * 採番マスタ
  * 
  * @author k_yamamoto
  *
  */
-public class Category {
+public class NumberingMaster {
 
 	@Id
-	private Integer catNumber;
+	private Byte category;
 
-	private String catName;
-
-	private Integer prefixNumber;
+	private Short number;
 
 }

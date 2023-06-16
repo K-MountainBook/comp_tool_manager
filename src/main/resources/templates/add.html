@@ -6,7 +6,7 @@
 <body lang="ja">
 	<div th:replace="~{header :: header}"></div>
 	<div class="container">
-		<form th:action="@{/add}" th:object="${tool}" method="post">
+		<form th:action="@{/addconfirm}" th:object="${tool}" method="post">
 			<div class="row">
 				<!-- LendID -->
 				<div class="col mb-3">
@@ -15,7 +15,7 @@
 				<!-- カテゴリ -->
 				<div class="col mb-3">
 					<label th:for="category">カテゴリ</label> <select th:field="*{category}" th:id="*{category}" class="form-control">
-						<option value="">選択してください</option>
+						<option value="0">選択してください</option>
 						<option th:each="cat: ${categoryList}" th:value="${cat.catNumber}" th:text="${cat.catName}"></option>
 					</select>
 				</div>
@@ -61,5 +61,12 @@
 		</form>
 	</div>
 	<div th:replace="~{footer :: footer}"></div>
+	<script>
+		let cat = document.querySelector('#category')
+		cat.onchange = event => {
+			// console.log(cat.options[cat.selectedIndex].value);
+			getManageNumber(cat.options[cat.selectedIndex].value);
+		}
+	</script>
 </body>
 </html>

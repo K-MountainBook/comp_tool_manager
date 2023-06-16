@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kmountain.comp_tool_manager.entity.Category;
 import com.kmountain.comp_tool_manager.form.AddForm;
@@ -24,18 +24,18 @@ public class AddController {
 	NumberingMasterService numberingMasterService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String lendGet(Model model) {
-		String template = "add";
+	public ModelAndView lendGet(ModelAndView mav) {
+		mav.setViewName("add");
 		AddForm form = new AddForm();
 
 		List<Category> category = categoryService.findAll();
 
 		form.setLendId("");
 
-		model.addAttribute("tool", form);
-		model.addAttribute("categoryList", category);
+		mav.addObject("tool", form);
+		mav.addObject("categoryList", category);
 
-		return template;
+		return mav;
 	}
 
 }

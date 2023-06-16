@@ -10,18 +10,21 @@ import com.kmountain.comp_tool_manager.service.NumberingMasterService;
 import com.kmountain.comp_tool_manager.util.ProjectUtility;
 
 @RestController
-@RequestMapping("api/v1/numbering")
-public class NumberingController {
+@RequestMapping("api/v1/")
+public class RestApiController {
 
 	private final NumberingMasterService numberingMasterService;
 
 	@Autowired
-	public NumberingController(NumberingMasterService numberingMasterService) {
+	public RestApiController(NumberingMasterService numberingMasterService) {
 		this.numberingMasterService = numberingMasterService;
 	}
 
-	@RequestMapping("{cat}")
+	@RequestMapping("numbering/{cat}")
 	public String get(@PathVariable String cat) {
+		if (cat.equals("0")) {
+			return "";
+		}
 		NumberingMaster temp = numberingMasterService.getNumber(Byte.parseByte(cat));
 		return ProjectUtility.numberringToString(temp.getCategory(), temp.getNumber());
 	}

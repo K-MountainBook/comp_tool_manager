@@ -13,6 +13,12 @@ import com.kmountain.comp_tool_manager.form.AddForm;
 import com.kmountain.comp_tool_manager.service.CategoryService;
 import com.kmountain.comp_tool_manager.service.NumberingMasterService;
 
+/**
+ * 備品追加コントローラ
+ * 
+ * @author k_yamamoto
+ *
+ */
 @Controller
 @RequestMapping("add")
 public class AddController {
@@ -23,8 +29,13 @@ public class AddController {
 	@Autowired
 	NumberingMasterService numberingMasterService;
 
+	/**
+	 * method get
+	 * @param mav ModelAndView
+	 * @return ModelAndView(view name : add)
+	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ModelAndView lendGet(ModelAndView mav) {
+	public ModelAndView get(ModelAndView mav) {
 		mav.setViewName("add");
 		AddForm form = new AddForm();
 

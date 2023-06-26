@@ -19,7 +19,7 @@ public class ManageController {
 	ToolsService tools_service;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String manageGet(Model model) {
+	public String get(Model model) {
 		String template = "manage";
 
 		List<Tools> toolAll = tools_service.findAll();

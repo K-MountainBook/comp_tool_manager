@@ -1,4 +1,4 @@
-package com.kmountain.comp_tool_manager.controller;
+43package com.kmountain.comp_tool_manager.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class StatusController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String lendGet() {
+	public String get() {
 		String template = "status";
 
 		return template;

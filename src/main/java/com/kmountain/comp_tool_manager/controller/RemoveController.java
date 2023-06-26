@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RemoveController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String lendGet() {
+	public String get() {
 		String template = "remove";
 
 		return template;

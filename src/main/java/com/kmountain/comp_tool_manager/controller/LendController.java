@@ -25,7 +25,7 @@ public class LendController {
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ModelAndView lendGet(ModelAndView mav) {
+	public ModelAndView get(ModelAndView mav) {
 		mav.setViewName("lend");
 
 		// 備品カテゴリの検索
@@ -40,7 +40,7 @@ public class LendController {
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public ModelAndView lendPost(ModelAndView mav, SearchForm search_form) {
+	public ModelAndView post(ModelAndView mav, SearchForm search_form) {
 		mav.setViewName("lend");
 
 		return mav;

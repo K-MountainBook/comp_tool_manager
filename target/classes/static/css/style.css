@@ -42,3 +42,35 @@ li{
 	padding-bottom: 10px;
 	border-bottom: 1px solid #000000;
 }
+
+.w-200px{
+	width:200px;
+}
+
+
+.h-200px{
+	height:200px;
+}
+
+.div_centering{
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
+}
+
+.font-50px{
+	font-size: 50px;
+	font-weight:900;
+}
+
+
+
+.font-25px{
+	font-size: 25px;
+	font-weight:900;
+}
+
+input .text-center{
+	text-align: center;
+}
+

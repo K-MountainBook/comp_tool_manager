@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head th:replace="~{header :: common_header(~{::title})}">
+<title>備品管理システム - 貸出/返却</title>
+</head>
+<body lang="ja">
+	<div th:replace="~{header :: header}"></div>
+	<div class="container overflow-hidden">
+		<div id="submenu">
+			<h1>貸出/返却</h1>
+			<form th:action="@{/lendqr}" th:method="POST">
+				<div class="row justify-content-center">
+					<div class="col-md-auto">
+						<label for="number" class="font-25px ">備品番号</label>
+					</div>
+				</div>
+				<div class="row justify-content-center" style="margin-bottom: 30px;">
+					<div class="col-md-auto">
+						<input th:type="text" id="number" class="font-25px text-center">
+					</div>
+				</div>
+
+				<div class="row justify-content-center" style="margin-bottom: 30px;">
+					<div class="col-md-auto">
+						<select class="font-25px">
+							<option>山本　啓太</option>
+						</select>
+					</div>
+				</div>
+
+				<div class=" row
+							justify-content-center" style="margin: 10px">
+					<div class="col-auto">
+						<input type="radio" name="lendcat" class="btn-check" autocomplete="off" id="radio1"> <label for="radio1"
+							class="btn btn-outline-primary w-200px h-200px div_centering font-50px">貸出</label>
+					</div>
+					<div class="col-auto">
+						<input type="radio" name="lendcat" class="btn-check" autocomplete="off" id="radio2"> <label for="radio2"
+							class="btn btn-outline-danger w-200px h-200px div_centering font-50px">返却</label>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div th:replace="~{footer :: footer}"></div>
+</body>
+</html>

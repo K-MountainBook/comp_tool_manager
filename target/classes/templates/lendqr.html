@@ -8,37 +8,38 @@
 	<div class="container overflow-hidden">
 		<div id="submenu">
 			<h1>貸出/返却</h1>
-			<form th:action="@{/lendqr}" th:method="POST">
+			<form th:action="@{/lendqr}" th:object="${qrform}" method="post">
 				<div class="row justify-content-center">
 					<div class="col-md-auto">
-						<label for="number" class="font-25px ">備品番号</label>
+						<label for="number" class="font-25px">備品番号</label>
 					</div>
 				</div>
 				<div class="row justify-content-center" style="margin-bottom: 30px;">
 					<div class="col-md-auto">
-						<input th:type="text" id="number" class="font-25px text-center">
+						<input type="text" th:field="*{itemNumber}" class="font-25px text-center">
 					</div>
 				</div>
 
 				<div class="row justify-content-center" style="margin-bottom: 30px;">
 					<div class="col-md-auto">
-						<select class="font-25px">
-							<option>山本　啓太</option>
+						<select class="font-25px" th:field="*{user}">
+							<option value="000000" selected>選択してください</option>
+							<option value="067202">山本 啓太</option>
 						</select>
 					</div>
 				</div>
 
-				<div class=" row
-							justify-content-center" style="margin: 10px">
+				<div class="row justify-content-center" style="margin: 10px">
 					<div class="col-auto">
-						<input type="radio" name="lendcat" class="btn-check" autocomplete="off" id="radio1"> <label for="radio1"
-							class="btn btn-outline-primary w-200px h-200px div_centering font-50px">貸出</label>
+						<input type="radio" th:field="*{lendcat}" class="btn-check" autocomplete="off" th:value="radio1"> <label
+							th:for="${#ids.prev('lendcat')}" class="btn btn-outline-primary w-200px h-200px div_centering font-50px">貸出</label>
 					</div>
 					<div class="col-auto">
-						<input type="radio" name="lendcat" class="btn-check" autocomplete="off" id="radio2"> <label for="radio2"
-							class="btn btn-outline-danger w-200px h-200px div_centering font-50px">返却</label>
+						<input type="radio" th:field="*{lendcat}" class="btn-check" autocomplete="off" th:value="radio2"> <label
+							th:for="${#ids.prev('lendcat')}" class="btn btn-outline-danger w-200px h-200px div_centering font-50px">返却</label>
 					</div>
 				</div>
+				<input type="submit">
 			</form>
 		</div>
 	</div>

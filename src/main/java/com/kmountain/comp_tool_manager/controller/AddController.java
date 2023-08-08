@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +30,11 @@ public class AddController {
 	@Autowired
 	NumberingMasterService numberingMasterService;
 
+	@ModelAttribute("tool")
+	AddForm makeAddForm() {
+		return new AddForm();
+	}
+
 	/**
 	 * method get
 	 * @param mav ModelAndView
@@ -37,13 +43,9 @@ public class AddController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView get(ModelAndView mav) {
 		mav.setViewName("add");
-		AddForm form = new AddForm();
 
 		List<Category> category = categoryService.findAll();
 
-		form.setLendId("");
-
-		mav.addObject("tool", form);
 		mav.addObject("categoryList", category);
 
 		return mav;

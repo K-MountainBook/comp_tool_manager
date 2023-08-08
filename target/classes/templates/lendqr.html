@@ -8,6 +8,14 @@
 	<div class="container overflow-hidden">
 		<div id="submenu">
 			<h1>貸出/返却</h1>
+			<th:block th:each="m : ${msg}">
+				<div th:text="${m.getMessage()}" class="alert"
+					th:classappend="|${m.getMsgCategory == T(com.kmountain.comp_tool_manager.controller.bean.MessageBean).CAT_INFO ? 'alert-primary' : ''} 
+					${m.getMsgCategory == T(com.kmountain.comp_tool_manager.controller.bean.MessageBean).CAT_WARN ? 'alert-warning' : ''} 
+					${m.getMsgCategory == T(com.kmountain.comp_tool_manager.controller.bean.MessageBean).CAT_ERR ? 'alert-danger' : ''}
+					${m.getMsgCategory == T(com.kmountain.comp_tool_manager.controller.bean.MessageBean).CAT_CRI ? 'alert-danger' : ''}|">
+				</div>
+			</th:block>
 			<form th:action="@{/lendqr}" th:object="${qrform}" method="post">
 				<div class="row justify-content-center">
 					<div class="col-md-auto">
@@ -23,7 +31,7 @@
 				<div class="row justify-content-center" style="margin-bottom: 30px;">
 					<div class="col-md-auto">
 						<select class="font-25px" th:field="*{user}">
-							<option value="000000" selected>選択してください</option>
+							<option value="" selected>選択してください</option>
 							<option value="067202">山本 啓太</option>
 						</select>
 					</div>
@@ -31,15 +39,17 @@
 
 				<div class="row justify-content-center" style="margin: 10px">
 					<div class="col-auto">
-						<input type="radio" th:field="*{lendcat}" class="btn-check" autocomplete="off" th:value="radio1"> <label
+						<input type="radio" th:field="*{lendcat}" class="btn-check" autocomplete="off" th:value="kashi_dashi"> <label
 							th:for="${#ids.prev('lendcat')}" class="btn btn-outline-primary w-200px h-200px div_centering font-50px">貸出</label>
 					</div>
 					<div class="col-auto">
-						<input type="radio" th:field="*{lendcat}" class="btn-check" autocomplete="off" th:value="radio2"> <label
+						<input type="radio" th:field="*{lendcat}" class="btn-check" autocomplete="off" th:value="hen_kyaku"> <label
 							th:for="${#ids.prev('lendcat')}" class="btn btn-outline-danger w-200px h-200px div_centering font-50px">返却</label>
 					</div>
 				</div>
+				<!-- 
 				<input type="submit">
+				 -->
 			</form>
 		</div>
 	</div>

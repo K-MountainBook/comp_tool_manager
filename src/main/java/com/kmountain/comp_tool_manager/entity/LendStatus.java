@@ -24,6 +24,10 @@ public class LendStatus {
 
 	/**
 	 * 貸出状態
+	 * 0:保管中
+	 * 1:貸出中
+	 * 2:長期貸し出し中
+	 * 9:修理・故障中
 	 */
 	private String lendStatus;
 }

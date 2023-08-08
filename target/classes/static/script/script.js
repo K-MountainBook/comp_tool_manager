@@ -11,3 +11,7 @@ function getManageNumber(code) {
 		}
 	}
 }
+
+function showModal() {
+
+}

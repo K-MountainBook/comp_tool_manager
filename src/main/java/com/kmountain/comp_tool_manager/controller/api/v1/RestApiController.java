@@ -43,7 +43,7 @@ public class RestApiController {
 			// 引数で指定されたカテゴリを元に未採番の番号を取得する
 			NumberingMaster temp = numberingMasterService.getNumber(Byte.parseByte(cat));
 			// byteとshortで抽出するので結合して文字列にして返す。
-			result = ProjectUtility.numberringToString(temp.getCategory(), temp.getNumber());
+			result = ProjectUtility.numberringToString(temp.getCategory(), (short) (temp.getNumber() + 1));
 		} catch (NumberFormatException ne) {
 			result = "";
 		}

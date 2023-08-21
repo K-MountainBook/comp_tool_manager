@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kmountain.comp_tool_manager.entity.LendStatus;
 import com.kmountain.comp_tool_manager.entity.Tools;
 import com.kmountain.comp_tool_manager.exception.NotExistsItemException;
 import com.kmountain.comp_tool_manager.repository.ToolsRepository;
@@ -33,7 +34,7 @@ public class LendServiceImpl implements LendService {
 
 		} else {
 			Tools result = resultSet.get();
-			if (result.getLendStatus().getCode().equals("0")) {
+			if (result.getLendStatus().getCode().equals(LendStatus.CODE_0)) {
 				returnValue = true;
 			}
 		}
@@ -58,6 +59,17 @@ public class LendServiceImpl implements LendService {
 		item.get().setLendTo("");
 		item.get().getLendStatus().setCode("0");
 		toolsRepository.saveAndFlush(item.get());
+	}
+
+	@Override
+	public boolean register(Tools tools) {
+		boolean result = false;
+		toolsRepository.save(tools);
+		Optional<Tools> findSet = toolsRepository.findById(tools.getLendId());
+		if (!findSet.isEmpty()) {
+			result = true;
+		}
+		return result;
 	}
 
 }

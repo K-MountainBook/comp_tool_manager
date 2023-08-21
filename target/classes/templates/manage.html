@@ -42,23 +42,25 @@
 							<th>保管場所</th>
 						</tr>
 					</thead>
-					<th:block th:each="row : ${data}">
-						<tbody>
+					<tbody>
+						<th:block th:each="row : ${data}">
 							<tr>
 								<td th:text="${row.lendStatus.lendStatus}"></td>
 								<td th:text="${row.managementName}"></td>
 								<td th:text="${row.anotherInfo}"></td>
 								<td th:text="${row.keepPlace}"></td>
 							</tr>
-						</tbody>
+						</th:block>
+					</tbody>
 				</table>
 			</th:block>
 		</div>
+		<!-- 
 		<th:block th:each="row : ${data}">
 			<div th:text="${row}"></div>
 		</th:block>
+		 -->
 	</div>
-
 	<div th:replace="~{footer :: footer}"></div>
 </body>
 </html>

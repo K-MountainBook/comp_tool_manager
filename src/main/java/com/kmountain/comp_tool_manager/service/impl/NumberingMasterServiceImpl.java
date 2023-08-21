@@ -22,4 +22,9 @@ public class NumberingMasterServiceImpl implements NumberingMasterService {
 		return numberingMasterRepository.findById(category).orElseThrow();
 	}
 
+	@Override
+	public NumberingMaster save(NumberingMaster numberingMaster) {
+		return numberingMasterRepository.save(numberingMaster);
+	}
+
 }

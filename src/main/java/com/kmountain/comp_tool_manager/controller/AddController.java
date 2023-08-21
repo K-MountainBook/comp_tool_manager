@@ -32,6 +32,7 @@ public class AddController {
 
 	@ModelAttribute("tool")
 	AddForm makeAddForm() {
+		// TODO 毎回呼ばれるたびに初期化されるらしく意味不明。要調査。
 		return new AddForm();
 	}
 
@@ -51,4 +52,26 @@ public class AddController {
 		return mav;
 	}
 
+	/**
+	 * method post
+	 * @param mav ModelAndView
+	 * @param form Bean
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public ModelAndView post(ModelAndView mav, AddForm form) {
+		System.out.println(form);
+
+		// カテゴリ一覧を作成
+		List<Category> category = categoryService.findAll();
+
+		mav.addObject("categoryList", category);
+
+		// 確認画面のため、入力された内容を改めてフォームに格納
+		mav.addObject("tool", form);
+
+		mav.setViewName("addconfirm");
+
+		return mav;
+	}
 }

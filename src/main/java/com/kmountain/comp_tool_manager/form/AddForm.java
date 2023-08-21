@@ -1,7 +1,5 @@
 package com.kmountain.comp_tool_manager.form;
 
-import com.kmountain.comp_tool_manager.entity.Specification;
-
 import jakarta.persistence.Id;
 import lombok.Data;
 
@@ -24,7 +22,7 @@ public class AddForm {
 	/**
 	 * 一般名or型式
 	 */
-	private Specification specification;
+	private String specification;
 	/**
 	 *	管理名称 
 	 */
@@ -41,4 +39,9 @@ public class AddForm {
 	 * 備考
 	 */
 	private String remarks;
+
+	/**
+	 * 遷移元ページ区別
+	 */
+	private String stat;
 }

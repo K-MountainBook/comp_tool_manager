@@ -16,6 +16,14 @@ import lombok.Data;
  */
 public class LendStatus {
 
+	public static final String CODE_0 = "0";
+
+	public static final String CODE_1 = "1";
+
+	public static final String CODE_2 = "2";
+
+	public static final String CODE_9 = "9";
+
 	/**
 	 * code
 	 */

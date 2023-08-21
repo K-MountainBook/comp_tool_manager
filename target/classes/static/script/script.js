@@ -12,6 +12,12 @@ function getManageNumber(code) {
 	}
 }
 
+function disableEnter(e) {
+	if (e.keyCode === 13) {
+		e.preventDefault();
+	}
+}
+
 function showModal() {
 
 }

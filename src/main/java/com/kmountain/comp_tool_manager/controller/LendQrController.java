@@ -44,45 +44,40 @@ public class LendQrController {
 		return mav;
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.POST)
-	public ModelAndView post(ModelAndView mav, LendQrForm qrform) {
+	/**
+	 * 貸出処理
+	 * @param mav
+	 * @param qrform
+	 * @return
+	 */
+	@RequestMapping(value = "checkout", method = RequestMethod.POST)
+	public ModelAndView postCheckout(ModelAndView mav, LendQrForm qrform) {
 
 		String result = "";
 		List<MessageBean> msgList = new ArrayList<>();
 		mav.setViewName("lendqr");
 
-		if (qrform.getUser().equals("")) {
+		if (!checkExistsUser(qrform)) {
 			// ユーザの入力が無かった場合はそのまま画面を戻す
-			msgList.add(new MessageBean(MessageBean.CAT_INFO, "貸出ユーザを選択してください。"));
+			msgList.add(new MessageBean(MessageBean.CAT_WARN, "貸出ユーザを選択してください。"));
 			mav.addObject("msg", msgList);
 			mav.addObject("qrform", qrform);
 			return mav;
 		}
 
 		try {
-			// 貸出状態のチェック
-			boolean lendCheck;
-			lendCheck = lendService.lendCheck(qrform.getItemNumber());
+			boolean lendCheck = checkLendStatus(qrform);
 
 			// 貸出状態とラジオボタンの選択で処理を決定
-			if (lendCheck && qrform.getLendcat().equals("kashi_dashi")) {
+			if (lendCheck) {
 				// 貸出処理
 				System.out.println("貸出処理");
 				lendService.kashidashi(qrform.getItemNumber(), qrform.getUser());
-			} else if (!lendCheck && qrform.getLendcat().equals("hen_kyaku")) {
-				// 返却処理
-				System.out.println("返却処理");
-				lendService.henkyaku(qrform.getItemNumber(), qrform.getUser());
+				msgList.add(new MessageBean(MessageBean.CAT_INFO, "貸出手続きが完了いたしました。備品番号:" + qrform.getItemNumber()));
 			} else {
-				if (lendCheck) {
-					System.out.println("返却されています。");
-					msgList.add(new MessageBean(MessageBean.CAT_INFO, "既に返却されています。"));
-					mav.addObject("qrform", qrform);
-				} else {
-					System.out.println("貸出中です。");
-					msgList.add(new MessageBean(MessageBean.CAT_INFO, "既に貸出されています。"));
-					mav.addObject("qrform", qrform);
-				}
+				System.out.println("貸出中です。");
+				msgList.add(new MessageBean(MessageBean.CAT_INFO, "既に貸出されています。"));
+				mav.addObject("qrform", qrform);
 			}
 
 		} catch (NotExistsItemException e) {
@@ -98,6 +93,77 @@ public class LendQrController {
 		mav.addObject("msg", msgList);
 
 		return mav;
+	}
+
+	/**
+	 * 返却処理
+	 * @param mav
+	 * @param qrform
+	 * @return
+	 */
+	@RequestMapping(value = "return", method = RequestMethod.POST)
+	public ModelAndView postReturn(ModelAndView mav, LendQrForm qrform) {
+
+		String result = "";
+		List<MessageBean> msgList = new ArrayList<>();
+		mav.setViewName("lendqr");
+
+		if (!checkExistsUser(qrform)) {
+			// ユーザの入力が無かった場合はそのまま画面を戻す
+			msgList.add(new MessageBean(MessageBean.CAT_WARN, "貸出ユーザを選択してください。"));
+			mav.addObject("msg", msgList);
+			mav.addObject("qrform", qrform);
+			return mav;
+		}
+
+		try {
+			boolean lendCheck = checkLendStatus(qrform);
+			// 貸出状態とラジオボタンの選択で処理を決定
+			if (!lendCheck) {
+				// 返却処理
+				System.out.println("返却処理");
+				lendService.henkyaku(qrform.getItemNumber(), qrform.getUser());
+				msgList.add(new MessageBean(MessageBean.CAT_INFO, "返却手続きが完了いたしました。備品番号:" + qrform.getItemNumber()));
+			} else {
+				System.out.println("返却されています。");
+				msgList.add(new MessageBean(MessageBean.CAT_INFO, "既に返却されています。"));
+				mav.addObject("qrform", qrform);
+			}
+
+		} catch (NotExistsItemException e) {
+			System.err.println("読み込まれたQRコードの備品が存在しません。");
+			msgList.add(new MessageBean(MessageBean.CAT_ERR, "読み込まれたQRコードの備品が存在しません。"));
+		} catch (Exception e) {
+			e.printStackTrace();
+			msgList.add(new MessageBean(MessageBean.CAT_CRI, "致命的なエラーが発生しました。管理者に問い合わせてください。"));
+
+		}
+
+		mav.addObject("result", result);
+		mav.addObject("msg", msgList);
+
+		return mav;
+	}
+
+	private boolean checkExistsUser(LendQrForm qrform) {
+		boolean result = true;
+		if (qrform.getUser().equals("")) {
+			result = false;
+		}
+		return result;
+	}
+
+	/**
+	 * 貸出状態チェック
+	 * @param qrform
+	 * @return
+	 * @throws NotExistsItemException
+	 */
+	private boolean checkLendStatus(LendQrForm qrform) throws NotExistsItemException {
+		// 貸出状態のチェック
+		boolean lendCheck;
+		lendCheck = lendService.lendCheck(qrform.getItemNumber());
+		return lendCheck;
 	}
 
 }

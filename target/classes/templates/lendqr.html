@@ -39,6 +39,15 @@
 
 				<div class="row justify-content-center" style="margin: 10px">
 					<div class="col-auto">
+						<button type="submit" th:field="*{lendcat}" class="btn btn-outline-primary w-200px h-200px div_centering font-50px" th:text="貸出"
+							th:formaction="@{/lendqr/checkout}"></button>
+					</div>
+					<div class="col-auto">
+						<button type="submit" th:field="*{lendcat}" class="btn btn-outline-danger w-200px h-200px div_centering font-50px" th:text="返却"
+							th:formaction="@{/lendqr/return}"></button>
+					</div>
+					<!-- 
+					<div class="col-auto">
 						<input type="radio" th:field="*{lendcat}" class="btn-check" autocomplete="off" th:value="kashi_dashi"> <label
 							th:for="${#ids.prev('lendcat')}" class="btn btn-outline-primary w-200px h-200px div_centering font-50px">貸出</label>
 					</div>
@@ -46,6 +55,7 @@
 						<input type="radio" th:field="*{lendcat}" class="btn-check" autocomplete="off" th:value="hen_kyaku"> <label
 							th:for="${#ids.prev('lendcat')}" class="btn btn-outline-danger w-200px h-200px div_centering font-50px">返却</label>
 					</div>
+ 					-->
 				</div>
 				<!-- 
 				<input type="submit">
@@ -76,5 +86,10 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		window.onload = function() {
+			document.getElementById('itemNumber').addEventListener('keydown',disableEnter, false);
+		}
+	</script>
 </body>
 </html>

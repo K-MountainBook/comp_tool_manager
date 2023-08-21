@@ -6,4 +6,6 @@ public interface NumberingMasterService {
 
 	public NumberingMaster getNumber(Byte category);
 
+	public NumberingMaster save(NumberingMaster numberingMaster);
+
 }

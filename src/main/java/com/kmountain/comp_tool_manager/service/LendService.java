@@ -1,5 +1,6 @@
 package com.kmountain.comp_tool_manager.service;
 
+import com.kmountain.comp_tool_manager.entity.Tools;
 import com.kmountain.comp_tool_manager.exception.NotExistsItemException;
 
 public interface LendService {
@@ -27,5 +28,7 @@ public interface LendService {
 	 * @param user
 	 */
 	public void henkyaku(String itemNumber, String user);
+
+	public boolean register(Tools tools);
 
 }

@@ -28,4 +28,30 @@ public class ToolsServiceImpl implements ToolsService {
 	public List<Tools> findAll() {
 		return toolsRepository.findAll();
 	}
+
+	/**
+	 * 備品の検索(id指定)
+	 */
+	@Override
+	public List<Tools> findToolsByIds(List<String> items) {
+		return toolsRepository.findAllById(items);
+	}
+
+	/**
+	 * 備品の削除
+	 */
+	@Override
+	public void removeTools(List<String> itemIds) {
+		toolsRepository.deleteAllById(itemIds);
+
+	}
+
+	/**
+	 * 備品の更新
+	 */
+	@Override
+	public Tools updateToolInfo(Tools tools) {
+		Tools result = toolsRepository.save(tools);
+		return result;
+	}
 }

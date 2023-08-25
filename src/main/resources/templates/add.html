@@ -10,7 +10,7 @@
 			<div class="row">
 				<!-- LendID -->
 				<div class="col mb-3">
-					<label th:for="lendId">備品ID（自動採番）</label> <input type="text" th:field="*{lendId}" th:id="*{lendId}" class="form-control" readonly>
+					<label th:for="lendId">備品ID（自動採番）</label> <input type="text" th:field="*{lendId}" th:id="*{lendId}" class="form-control">
 				</div>
 				<!-- カテゴリ -->
 				<div class="col mb-3">
@@ -68,6 +68,9 @@
 			// console.log(cat.options[cat.selectedIndex].value);
 			getManageNumber(cat.options[cat.selectedIndex].value);
 		}
+		window.addEventListener("load", function() {
+			document.getElementById("lendId").setAttribute("readonly","");
+		});
 	</script>
 </body>
 </html>

@@ -19,12 +19,20 @@
 			<form th:action="@{/lendqr}" th:object="${qrform}" method="post">
 				<div class="row justify-content-center">
 					<div class="col-md-auto">
-						<label for="number" class="font-25px">備品番号</label>
+						<label for="itemNumber" class="font-25px">備品番号</label>
 					</div>
 				</div>
 				<div class="row justify-content-center" style="margin-bottom: 30px;">
 					<div class="col-md-auto">
-						<input type="text" th:field="*{itemNumber}" class="font-25px text-center">
+						<!-- QRコード読み取り -->
+						<div class=" input-group">
+							<input type="text" class="qr-txt form-control" th:field="*{itemNumber}" placeholder="input or read qr code"> <label
+								for="read_qr_btn" class="btn btn-primary pointer_cursor"> <i class="bi bi-qr-code"></i>
+							</label>
+							<div class="qr-btn">
+								<input type="file" accept="image/*" capture=environment tabindex="-1" id="read_qr_btn">
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -88,7 +96,8 @@
 	</div>
 	<script>
 		window.onload = function() {
-			document.getElementById('itemNumber').addEventListener('keydown',disableEnter, false);
+			document.getElementById('itemNumber').addEventListener('keydown',
+					disableEnter, false);
 		}
 	</script>
 </body>

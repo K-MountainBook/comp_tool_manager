@@ -17,10 +17,10 @@ import lombok.Data;
 public class Category {
 
 	@Id
-	private Integer catNumber;
+	private Byte catNumber;
 
 	private String catName;
 
-	private Integer prefixNumber;
+	private String prefixNumber;
 
 }

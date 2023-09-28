@@ -16,7 +16,7 @@ public class AddForm {
 	 */
 	private Integer category;
 	/**
-	 * 	メーカー
+	 * メーカー
 	 */
 	private String maker;
 	/**
@@ -24,7 +24,7 @@ public class AddForm {
 	 */
 	private String specification;
 	/**
-	 *	管理名称 
+	 * 管理名称
 	 */
 	private String managementName;
 	/**
@@ -35,6 +35,10 @@ public class AddForm {
 	 * 保管/常備場所
 	 */
 	private String keepPlace;
+	/**
+	 * 常設備品
+	 */
+	private boolean lend_ng;
 	/**
 	 * 備考
 	 */

@@ -53,6 +53,7 @@ public class AddConfirmController {
 	public ModelAndView registerPost(ModelAndView mav, AddForm form) {
 
 		// 新規登録なので未貸し出しの状態のステータスをリテラルで取得。
+		// TODO:貸出不可(常設)のアイテムの処理を行う
 		LendStatus lendStatus = lendStatusService.getStatus(LendStatus.CODE_0);
 		Specification specification = new Specification();
 
@@ -66,7 +67,7 @@ public class AddConfirmController {
 			if (specResult == null) {
 				// TODO nullになるはずはないので例外処理を行う
 			}
-			//無い場合は型番だけセット
+			// 無い場合は型番だけセット
 			specification.setProductId(form.getSpecification());
 			specification.setCommonInfo("");
 		} else {

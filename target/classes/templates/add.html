@@ -10,7 +10,8 @@
 			<div class="row">
 				<!-- LendID -->
 				<div class="col mb-3">
-					<label th:for="lendId">備品ID（自動採番）</label> <input type="text" th:field="*{lendId}" th:id="*{lendId}" class="form-control">
+					<label th:for="lendId">備品ID（自動採番）</label>
+					<input type="text" th:field="*{lendId}" th:id="*{lendId}" class="form-control">
 				</div>
 				<!-- カテゴリ -->
 				<div class="col mb-3">
@@ -23,29 +24,41 @@
 			<div class="row">
 				<!-- メーカー -->
 				<div class="col mb-3">
-					<label th:for="maker">製品メーカー</label> <input type="text" th:field="*{maker}" th:id="*{maker}" class="form-control">
+					<label th:for="maker">製品メーカー</label>
+					<input type="text" th:field="*{maker}" th:id="*{maker}" class="form-control">
 				</div>
 				<!-- 一般名or型式 -->
 				<div class="col mb-3">
-					<label th:for="specification">一般名or型式</label> <input type="text" th:field="*{specification}" th:id="*{specification}" class="form-control">
+					<label th:for="specification">一般名or型式</label>
+					<input type="text" th:field="*{specification}" th:id="*{specification}" class="form-control">
 				</div>
 			</div>
 			<div class="row">
 				<!-- 管理名称 -->
 				<div class="mb-3">
-					<label th:for="managementName">管理名称</label> <input type="text" th:field="*{managementName}" th:id="*{managementName}" class="form-control">
+					<label th:for="managementName">管理名称</label>
+					<input type="text" th:field="*{managementName}" th:id="*{managementName}" class="form-control">
 				</div>
 			</div>
 			<div class="row">
 				<!-- 追加情報 -->
 				<div class="mb-3">
-					<label th:for="anotherInfo">追加情報</label> <input type="text" th:field="*{anotherInfo}" th:id="*{anotherInfo}" class="form-control">
+					<label th:for="anotherInfo">追加情報</label>
+					<input type="text" th:field="*{anotherInfo}" th:id="*{anotherInfo}" class="form-control">
 				</div>
 			</div>
 			<div class="row">
 				<!-- 保管/常備場所 -->
-				<div class="mb-3">
-					<label th:for="keepPlace">保管/常備場所</label> <input type="text" th:field="*{keepPlace}" th:id="*{keepPlace}" class="form-control">
+				<div class="col mb-3">
+					<label th:for="keepPlace">保管/常備場所</label>
+					<input type="text" th:field="*{keepPlace}" th:id="*{keepPlace}" class="form-control">
+				</div>
+				<div class="col md-3 ">
+					<label th:for="${#ids.next('lend_ng')}" class="form-check-label">常設 <span class="font-alert">(※移動しない備品の場合はONにしてください。) </span>
+					</label>
+					<div class="form-check form-switch fs-3">
+						<input type="checkbox" th:field="*{lend_ng}" class="form-check-input">
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -56,7 +69,8 @@
 				</div>
 			</div>
 			<div class="textright">
-				<input type="submit" class="btn btn-primary" value="確認画面へ"> <input type="reset" class="btn btn-outline-danger" value="内容クリア">
+				<input type="submit" class="btn btn-primary" value="確認画面へ">
+				<input type="reset" class="btn btn-outline-danger" value="内容クリア">
 			</div>
 			<input type="hidden" name="stat" value="0">
 		</form>

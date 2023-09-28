@@ -17,7 +17,7 @@ import lombok.Data;
 public class Category {
 
 	@Id
-	private Byte catNumber;
+	private String catNumber;
 
 	private String catName;
 

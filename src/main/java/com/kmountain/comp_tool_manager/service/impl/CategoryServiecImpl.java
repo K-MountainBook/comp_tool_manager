@@ -10,6 +10,7 @@ import com.kmountain.comp_tool_manager.entity.Category;
 import com.kmountain.comp_tool_manager.entity.CategoryKey;
 import com.kmountain.comp_tool_manager.repository.CategoryRepository;
 import com.kmountain.comp_tool_manager.service.CategoryService;
+import com.kmountain.comp_tool_manager.service.column.CategoryNumberOnly;
 
 @Service
 public class CategoryServiecImpl implements CategoryService {
@@ -53,6 +54,12 @@ public class CategoryServiecImpl implements CategoryService {
 	public Optional<Category> getsSubCategory(String cat, String scat) {
 		Optional<Category> result = categoryRepository.findBycatNumberAndSubCatNumber(cat, scat);
 		return result;
+	}
+
+	@Override
+	public List<CategoryNumberOnly> findCatNumberByAll() {
+		// TODO 自動生成されたメソッド・スタブ
+		return categoryRepository.findDistinctCatNumberByCatNumberLike("%");
 	}
 
 }

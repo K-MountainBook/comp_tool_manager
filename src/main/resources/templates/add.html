@@ -17,19 +17,20 @@
 				<div class="col mb-3">
 					<label th:for="category">大分類</label> <select th:field="*{category}" class="form-control">
 						<option value="0">選択してください</option>
-						<option th:each="cat: ${categoryList}" th:value="${cat.catNumber}" th:text="${cat.catName}"></option>
+						<option th:each="cat: ${categoryList}" th:value="${cat.getCatNumber}" th:text="${cat.getCatName}"></option>
 					</select>
 				</div>
 				<div class="col mb-3">
 					<label th:for="category">中分類</label> <select th:field="*{subCategory}" class="form-control">
 						<option value="0">選択してください</option>
-						<option th:each="cat: ${categoryList}" th:value="${cat.subCatNumber}" th:text="${cat.subCatName}"></option>
+						<!--  option th:each="cat: ${categoryList}" th:value="${cat.subCatNumber}" th:text="${cat.subCatName}"></option> -->
 					</select>
 				</div>
 				<div class="col mb-3">
 					<label th:for="category">小分類</label> <select th:field="*{sSubCategory}" class="form-control">
 						<option value="0">選択してください</option>
-						<option th:each="cat: ${categoryList}" th:value="${cat.sSubCatNumber}" th:text="${cat.sSubCatName}"></option>
+						<!-- option th:each="cat: ${categoryList}" th:value="${cat.sSubCatNumber}" th:text="${cat.sSubCatName}">
+						</option> -->
 					</select>
 				</div>
 			</div>
@@ -90,9 +91,21 @@
 	<div th:replace="~{footer :: footer}"></div>
 	<script>
 		let cat = document.querySelector('#category')
-		cat.onchange = event => {
+		let scat = document.querySelector('#subCategory')
+		let sscat = document.querySelector('#sSubCategory')
+		
+		cat.onchange = event =>{
+			// alert(cat.options[cat.selectedIndex].value);
+		}
+		
+		scat.onchange = event =>{
+			// alert(cat.options[cat.selectedIndex].value);
+		}
+		
+		
+		sscat.onchange = event => {
 			// console.log(cat.options[cat.selectedIndex].value);
-			getManageNumber(cat.options[cat.selectedIndex].value);
+			getManageNumber(cat.options[cat.selectedIndex].value + cat.options[scat.selectedIndex].value + cat.options[sscat.selectedIndex].value);
 		}
 		window.addEventListener("load", function() {
 			document.getElementById("lendId").setAttribute("readonly","");

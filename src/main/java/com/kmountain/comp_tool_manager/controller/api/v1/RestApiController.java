@@ -1,7 +1,6 @@
 package com.kmountain.comp_tool_manager.controller.api.v1;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -78,7 +77,7 @@ public class RestApiController {
 
 		try {
 
-			System.out.println(mapper.writeValueAsString(subCategoryList));
+			result = mapper.writeValueAsString(subCategoryList);
 
 		} catch (Exception e) {
 
@@ -99,12 +98,12 @@ public class RestApiController {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(new Jdk8Module());
 
-		Optional<Category> sSubCategoryList = categoryService.getsSubCategory(cat, scat);
+		List<Category> sSubCategoryList = categoryService.getsSubCategory(cat, scat);
 		// System.out.println(subCategoryList.get());
 
 		try {
 
-			System.out.println(mapper.writeValueAsString(sSubCategoryList));
+			result = mapper.writeValueAsString(sSubCategoryList);
 
 		} catch (Exception e) {
 

@@ -17,7 +17,7 @@ public interface CategoryService {
 
 	public List<Category> getSubCategory(String cat);
 
-	public Optional<Category> getsSubCategory(String cat, String scat);
+	public List<Category> getsSubCategory(String cat, String scat);
 
 	public List<CategoryNumberOnly> findCatNumberByAll();
 

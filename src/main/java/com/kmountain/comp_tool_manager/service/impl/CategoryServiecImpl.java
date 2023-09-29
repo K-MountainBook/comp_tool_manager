@@ -51,8 +51,8 @@ public class CategoryServiecImpl implements CategoryService {
 	}
 
 	@Override
-	public Optional<Category> getsSubCategory(String cat, String scat) {
-		Optional<Category> result = categoryRepository.findBycatNumberAndSubCatNumber(cat, scat);
+	public List<Category> getsSubCategory(String cat, String scat) {
+		List<Category> result = categoryRepository.findBycatNumberAndSubCatNumber(cat, scat);
 		return result;
 	}
 

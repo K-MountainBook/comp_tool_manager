@@ -27,9 +27,9 @@ public class Tools {
 	/**
 	 * カテゴリ
 	 */
-	private Integer category;
+	private String category;
 	/**
-	 * 	メーカー
+	 * メーカー
 	 */
 	private String maker;
 	/**
@@ -39,7 +39,7 @@ public class Tools {
 	@JoinColumn(name = "productId", referencedColumnName = "productId")
 	private Specification specification;
 	/**
-	 *	管理名称 
+	 * 管理名称
 	 */
 	private String managementName;
 	/**

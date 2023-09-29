@@ -14,7 +14,15 @@ public class AddForm {
 	/**
 	 * カテゴリ
 	 */
-	private Integer category;
+	private String category;
+	/**
+	 * カテゴリ
+	 */
+	private String subCategory;
+	/**
+	 * カテゴリ
+	 */
+	private String sSubCategory;
 	/**
 	 * メーカー
 	 */

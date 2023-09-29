@@ -18,7 +18,7 @@ public class NumberingMasterServiceImpl implements NumberingMasterService {
 	}
 
 	@Override
-	public NumberingMaster getNumber(Byte category) {
+	public NumberingMaster getNumber(String category) {
 		return numberingMasterRepository.findById(category).orElseThrow();
 	}
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kmountain.comp_tool_manager.entity.Category;
+import com.kmountain.comp_tool_manager.entity.CategoryKey;
 import com.kmountain.comp_tool_manager.repository.CategoryRepository;
 import com.kmountain.comp_tool_manager.service.CategoryService;
 
@@ -27,9 +28,8 @@ public class CategoryServiecImpl implements CategoryService {
 		return categoryRepository.findAll();
 	}
 
-	@Override
-	public Optional<Category> findById(Integer category) {
-		return categoryRepository.findById(category);
+	public Optional<Category> findById(CategoryKey categorykey) {
+		return categoryRepository.findById(categorykey);
 
 	}
 
@@ -38,6 +38,21 @@ public class CategoryServiecImpl implements CategoryService {
 		Category result = categoryRepository.save(catUpdateData);
 		return result;
 
+	}
+
+	@Override
+	public List<Category> getSubCategory(String cat) {
+		// TODO 自動生成されたメソッド・スタブ
+		List<Category> result = categoryRepository.findBycatNumber(cat);
+
+		return result;
+
+	}
+
+	@Override
+	public Optional<Category> getsSubCategory(String cat, String scat) {
+		Optional<Category> result = categoryRepository.findBycatNumberAndSubCatNumber(cat, scat);
+		return result;
 	}
 
 }

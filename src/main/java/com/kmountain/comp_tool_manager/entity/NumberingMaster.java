@@ -17,7 +17,7 @@ import lombok.Data;
 public class NumberingMaster {
 
 	@Id
-	private Byte category;
+	private String category;
 
 	private Short number;
 

@@ -13,7 +13,6 @@ import com.kmountain.comp_tool_manager.entity.NumberingMaster;
 import com.kmountain.comp_tool_manager.entity.Specification;
 import com.kmountain.comp_tool_manager.entity.Tools;
 import com.kmountain.comp_tool_manager.form.AddForm;
-import com.kmountain.comp_tool_manager.service.CategoryService;
 import com.kmountain.comp_tool_manager.service.LendService;
 import com.kmountain.comp_tool_manager.service.LendStatusService;
 import com.kmountain.comp_tool_manager.service.NumberingMasterService;
@@ -39,8 +38,7 @@ public class AddConfirmController {
 
 	@Autowired
 	public AddConfirmController(LendService lendService, LendStatusService lendStatusService,
-			CategoryService categoryService, SpecificationService specificationService,
-			NumberingMasterService numberingMasterService) {
+			SpecificationService specificationService, NumberingMasterService numberingMasterService) {
 		this.lendService = lendService;
 		this.lendStatusService = lendStatusService;
 		this.specificationService = specificationService;
@@ -80,7 +78,7 @@ public class AddConfirmController {
 
 		// データ更新のためにtoolsのインスタンスに値をセットする
 		tools.setLendId(form.getLendId());
-		tools.setCategory(form.getCategory());
+		tools.setCategory(form.getCategory() + form.getSubCategory() + form.getSSubCategory());
 		tools.setMaker(form.getMaker());
 		tools.setSpecification(specification);
 		tools.setManagementName(form.getManagementName());
@@ -93,7 +91,7 @@ public class AddConfirmController {
 		if (lendService.register(tools)) {
 			// trueの場合は正常終了
 			// categoryテーブルの数字を1足して終わり。
-			Byte catByteType = form.getCategory().byteValue();
+			String catByteType = (form.getCategory() + form.getSubCategory() + form.getSSubCategory());
 			NumberingMaster catUpdateData = numberingMasterService.getNumber(catByteType);
 			catUpdateData.setNumber((short) (catUpdateData.getNumber() + 1));
 			NumberingMaster catUpdateResult = numberingMasterService.save(catUpdateData);

@@ -21,14 +21,14 @@
 					</select>
 				</div>
 				<div class="col mb-3">
-					<label th:for="category">中分類</label> <select th:field="*{subCategory}" class="form-control">
+					<label th:for="subCategory">中分類</label> <select th:field="*{subCategory}" class="form-control">
 						<option value="0">選択してください</option>
 						<option value="01">test</option>
 						<!--  option th:each="cat: ${categoryList}" th:value="${cat.subCatNumber}" th:text="${cat.subCatName}"></option> -->
 					</select>
 				</div>
 				<div class="col mb-3">
-					<label th:for="category">小分類</label> <select th:field="*{sSubCategory}" class="form-control">
+					<label th:for="sSubCategory">小分類</label> <select th:field="*{sSubCategory}" class="form-control">
 						<option value="0">選択してください</option>
 						<option value="01">test</option>
 						<!-- option th:each="cat: ${categoryList}" th:value="${cat.sSubCatNumber}" th:text="${cat.sSubCatName}">
@@ -96,29 +96,37 @@
 		let scat = document.querySelector('#subCategory')
 		let sscat = document.querySelector('#sSubCategory')
 		
+		// 中分類の設定
 		cat.onchange = event =>{
 			// console.log(cat.options[cat.selectedIndex].value);
 			if(cat.options[cat.selectedIndex].value == 0){
-				// console.log(false);
+				removeAll(scat.querySelectorAll('option'));
+				removeAll(sscat.querySelectorAll('option'));
+				scat.appendChild(createOptionItem('選択してください', '0'));
+				sscat.appendChild(createOptionItem('選択してください', '0'));
 				return false;
 			}
 			getSubCategory(cat.options[cat.selectedIndex].value);
 		}
 		
+		// 小分類の設定
 		scat.onchange = event =>{
-			// alert(cat.options[cat.selectedIndex].value);
 			if(scat.options[scat.selectedIndex].value == 0){
-				// console.log(false);
+				removeAll(sscat.querySelectorAll('option'));
+				sscat.appendChild(createOptionItem('選択してください', '0'));
 				return false;
 			}
+			console.log(scat.options[scat.selectedIndex].value)
 			getSub2Category(cat.options[cat.selectedIndex].value, scat.options[scat.selectedIndex].value);
 		}
 		
 		
+		// コードの取得
 		sscat.onchange = event => {
 			// console.log(cat.options[cat.selectedIndex].value + scat.options[scat.selectedIndex].value + sscat.options[sscat.selectedIndex].value);
 			getManageNumber(cat.options[cat.selectedIndex].value + scat.options[scat.selectedIndex].value + sscat.options[sscat.selectedIndex].value);
 		}
+		
 		window.addEventListener("load", function() {
 			document.getElementById("lendId").setAttribute("readonly","");
 		});

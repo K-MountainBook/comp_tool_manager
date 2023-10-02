@@ -23,14 +23,14 @@ function getSubCategory(code) {
 			select_form.appendChild(createOptionItem('選択してください', '0'));
 			for (jsonItem of JSON.parse(jsonResult)) {
 				console.log(jsonItem);
-				select_form.appendChild(createOptionItem(jsonItem.subCatName, jsonItem.subCutNumber));
+				select_form.appendChild(createOptionItem(jsonItem.subCatName, jsonItem.subCatNumber));
 			}
 
 		}
 	}
 }
 
-// 大分類から属する中分類を取得する
+// 大分類・中分類から属する小分類を取得する
 function getSub2Category(subcode, subsubcode) {
 	var httpRequest = new XMLHttpRequest();
 	// RESTfulAPIのアドレスを外に出したい
@@ -39,7 +39,21 @@ function getSub2Category(subcode, subsubcode) {
 
 	httpRequest.onreadystatechange = () => {
 		if (httpRequest.readyState == 4 && httpRequest.status == 200) {
-			console.log(httpRequest.responseText);
+			var jsonResult = httpRequest.responseText;
+			console.log(jsonResult);
+			// objectを取得
+			// selectのフォームを取得
+			var select_form = document.getElementById('sSubCategory');
+			// そのフォームの内容を取得。NodeListとかわからんちん。
+			var options = document.querySelectorAll('#sSubCategory option');
+			// 全てのオプションを一回削除
+			removeAll(options);
+			// 再度オプションの内容の作成
+			select_form.appendChild(createOptionItem('選択してください', '0'));
+			for (jsonItem of JSON.parse(jsonResult)) {
+				console.log(jsonItem);
+				select_form.appendChild(createOptionItem(jsonItem.subCatName, jsonItem.subCutNumber));
+			}
 		}
 	}
 }

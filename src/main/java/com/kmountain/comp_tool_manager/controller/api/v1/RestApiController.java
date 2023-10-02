@@ -7,13 +7,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.kmountain.comp_tool_manager.entity.Category;
-import com.kmountain.comp_tool_manager.entity.NumberingMaster;
 import com.kmountain.comp_tool_manager.service.CategoryService;
 import com.kmountain.comp_tool_manager.service.NumberingMasterService;
-import com.kmountain.comp_tool_manager.util.ProjectUtility;
 
 /**
  * REST API用コントローラ
@@ -50,11 +49,17 @@ public class RestApiController {
 		}
 
 		try {
-			// 引数で指定されたカテゴリを元に未採番の番号を取得する
-			NumberingMaster temp = numberingMasterService.getNumber(cat);
-			// byteとshortで抽出するので結合して文字列にして返す。
-			result = ProjectUtility.numberringToString(temp.getCategory(), (short) (temp.getNumber() + 1));
-		} catch (NumberFormatException ne) {
+//			// 引数で指定されたカテゴリを元に未採番の番号を取得する
+//			NumberingMaster temp = numberingMasterService.getNumber(cat);
+//			// byteとshortで抽出するので結合して文字列にして返す。
+//			result = ProjectUtility.numberringToString(temp.getCategory(), (short) (temp.getNumber() + 1));
+			List<Category> selectResult = categoryService.getSubCategory(cat);
+
+			ObjectMapper mapper = new ObjectMapper();
+
+			result = mapper.writeValueAsString(selectResult);
+
+		} catch (NumberFormatException | JsonProcessingException ne) {
 			result = "";
 		}
 		return result;

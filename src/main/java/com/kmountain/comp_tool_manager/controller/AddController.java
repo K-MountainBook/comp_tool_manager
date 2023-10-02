@@ -59,6 +59,8 @@ public class AddController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ModelAndView post(ModelAndView mav, @ModelAttribute("tool") AddForm form) {
 		System.out.println(form);
+		// トグルスイッチONがTrue
+		System.out.println(form.isLend_ng());
 
 		// カテゴリ一覧を作成
 		List<Category> category = categoryService.findAll();

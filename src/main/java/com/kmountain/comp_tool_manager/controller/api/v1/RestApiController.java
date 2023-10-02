@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.kmountain.comp_tool_manager.entity.Category;
+import com.kmountain.comp_tool_manager.entity.NumberingMaster;
 import com.kmountain.comp_tool_manager.service.CategoryService;
 import com.kmountain.comp_tool_manager.service.NumberingMasterService;
 
@@ -41,25 +41,22 @@ public class RestApiController {
 	 * @return カテゴリ番号で採番可能な番号を取得（最も低い番号を取得）
 	 */
 	@RequestMapping("numbering/{cat}")
-	public String get(@PathVariable String cat) {
+	public String getNumbering(@PathVariable String cat) {
 		String result = "";
+
 		// 引数が"0"の場合はカテゴリ無しという事で空白を返却
 		if (cat.equals("0")) {
 			return "";
 		}
 
 		try {
-//			// 引数で指定されたカテゴリを元に未採番の番号を取得する
-//			NumberingMaster temp = numberingMasterService.getNumber(cat);
-//			// byteとshortで抽出するので結合して文字列にして返す。
-//			result = ProjectUtility.numberringToString(temp.getCategory(), (short) (temp.getNumber() + 1));
-			List<Category> selectResult = categoryService.getSubCategory(cat);
+			// 引数で指定されたカテゴリを元に未採番の番号を取得する
+			System.out.println(cat);
+			NumberingMaster selectResult = numberingMasterService.getNumber(cat);
 
-			ObjectMapper mapper = new ObjectMapper();
+			result = cat + String.format("%03d", selectResult.getNumber());
 
-			result = mapper.writeValueAsString(selectResult);
-
-		} catch (NumberFormatException | JsonProcessingException ne) {
+		} catch (NumberFormatException e) {
 			result = "";
 		}
 		return result;

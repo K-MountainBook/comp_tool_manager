@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="97.490562mm"
+   height="97.490562mm"
+   viewBox="0 0 97.490562 97.490562"
+   version="1.1"
+   id="svg731"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview733"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.74564394"
+     inkscape:cx="180.381"
+     inkscape:cy="183.73381"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs728" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-57.35149,-99.932129)">
+    <rect
+       style="fill:#0000ff;stroke:#ff0000;stroke-width:0.264755;-inkscape-stroke:none;stop-color:#000000"
+       id="rect964"
+       width="97.225807"
+       height="97.225807"
+       x="57.483868"
+       y="100.06451"
+       ry="22.710228" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:66.8487px;line-height:normal;font-family:'Colonna MT';-inkscape-font-specification:'Colonna MT';text-decoration-color:#000000;fill:#ffffff;stroke:#ff0000;stroke-width:0.200676;-inkscape-stroke:none;stop-color:#000000"
+       x="62.841198"
+       y="145.02448"
+       id="text1228"
+       transform="scale(0.78472625,1.2743297)"><tspan
+         sodipodi:role="line"
+         id="tspan1226"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:66.8487px;font-family:'Colonna MT';-inkscape-font-specification:'Colonna MT';fill:#ffffff;stroke-width:0.200676"
+         x="62.841198"
+         y="145.02448">ロゴ</tspan></text>
+  </g>
+</svg>

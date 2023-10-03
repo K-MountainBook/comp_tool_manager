@@ -48,7 +48,6 @@
 				removeAll(sscat.querySelectorAll('option'));
 				scat.appendChild(createOptionItem('選択してください', '0'));
 				sscat.appendChild(createOptionItem('選択してください', '0'));
-				document.getElementById('lendId').value = "";
 				return false;
 			}
 			getSubCategory(cat.options[cat.selectedIndex].value);
@@ -59,7 +58,6 @@
 			if(scat.options[scat.selectedIndex].value == 0){
 				removeAll(sscat.querySelectorAll('option'));
 				sscat.appendChild(createOptionItem('選択してください', '0'));
-				document.getElementById('lendId').value = "";
 				return false;
 			}
 			console.log(scat.options[scat.selectedIndex].value)

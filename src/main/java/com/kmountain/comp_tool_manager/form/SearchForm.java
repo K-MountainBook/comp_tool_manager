@@ -7,9 +7,17 @@ public class SearchForm {
 	/**
 	 * カテゴリ
 	 */
-	private Integer category;
+	private String category;
 	/**
-	 * 	メーカー
+	 * カテゴリ
+	 */
+	private String subCategory;
+	/**
+	 * カテゴリ
+	 */
+	private String sSubCategory;
+	/**
+	 * メーカー
 	 */
 	private String maker;
 	/**
@@ -17,7 +25,7 @@ public class SearchForm {
 	 */
 	private String String;
 	/**
-	 *	管理名称 
+	 * 管理名称
 	 */
 	private String managementName;
 	/**

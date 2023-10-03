@@ -52,12 +52,21 @@ public class AddConfirmController {
 
 		// 新規登録なので未貸し出しの状態のステータスをリテラルで取得。
 		// TODO:貸出不可(常設)のアイテムの処理を行う
-		LendStatus lendStatus = lendStatusService.getStatus(LendStatus.CODE_0);
+
+		LendStatus lendStatus;
+
+		if (form.isLend_ng()) {
+			// 常設:基本持出不可
+			lendStatus = lendStatusService.getStatus(LendStatus.CODE_10);
+		} else {
+			// 否常設
+			lendStatus = lendStatusService.getStatus(LendStatus.CODE_0);
+		}
 		Specification specification = new Specification();
 
 		Tools tools = new Tools();
 
-		// 備品があればそのまま、無ければ登録を行う。
+		// 同一型番で新規のアイテムが登録される場合の処理備品があればそのまま、無ければ登録を行う。
 		Optional<Specification> specSearch = specificationService.findById(form.getSpecification());
 		if (specSearch.isEmpty()) {
 			// 無い場合は型番の登録を行う
@@ -73,8 +82,6 @@ public class AddConfirmController {
 			specification.setProductId(specSearch.get().getProductId());
 			specification.setCommonInfo(specSearch.get().getCommonInfo());
 		}
-
-		// 入力されたspecificationをインスタンスに格納する。
 
 		// データ更新のためにtoolsのインスタンスに値をセットする
 		tools.setLendId(form.getLendId());

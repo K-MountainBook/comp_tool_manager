@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kmountain.comp_tool_manager.entity.Category;
 import com.kmountain.comp_tool_manager.form.SearchForm;
 import com.kmountain.comp_tool_manager.service.CategoryService;
+import com.kmountain.comp_tool_manager.service.column.CategoryNumberOnly;
 
 @Controller
 @RequestMapping("lend")
@@ -27,8 +27,8 @@ public class LendController {
 	public ModelAndView get(ModelAndView mav) {
 		mav.setViewName("lend");
 
-		// 備品カテゴリの検索
-		List<Category> category = categoryService.findAll();
+		// 大分類の番号と名前を取得
+		List<CategoryNumberOnly> category = categoryService.findCatNumberByAll();
 
 		System.out.println(category);
 

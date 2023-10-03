@@ -1,18 +1,13 @@
 package com.kmountain.comp_tool_manager.controller.api.v1;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.kmountain.comp_tool_manager.entity.Category;
 import com.kmountain.comp_tool_manager.entity.NumberingMaster;
-import com.kmountain.comp_tool_manager.service.CategoryService;
 import com.kmountain.comp_tool_manager.service.NumberingMasterService;
+import com.kmountain.comp_tool_manager.util.ProjectUtility;
 
 /**
  * REST API用コントローラ
@@ -24,14 +19,11 @@ import com.kmountain.comp_tool_manager.service.NumberingMasterService;
 @RequestMapping("api/v1/")
 public class RestApiController {
 
-	private final CategoryService categoryService;
-
 	private final NumberingMasterService numberingMasterService;
 
 	@Autowired
-	public RestApiController(NumberingMasterService numberingMasterService, CategoryService categoryService) {
+	public RestApiController(NumberingMasterService numberingMasterService) {
 		this.numberingMasterService = numberingMasterService;
-		this.categoryService = categoryService;
 	}
 
 	/**
@@ -51,10 +43,10 @@ public class RestApiController {
 
 		try {
 			// 引数で指定されたカテゴリを元に未採番の番号を取得する
-			System.out.println(cat);
+			// TODO:log4jを入れましょう
 			NumberingMaster selectResult = numberingMasterService.getNumber(cat);
 
-			result = cat + String.format("%03d", selectResult.getNumber());
+			result = cat + String.format("%03d", selectResult.getNumber() + 1);
 
 		} catch (NumberFormatException e) {
 			result = "";
@@ -70,22 +62,7 @@ public class RestApiController {
 	 */
 	@RequestMapping("subcategory/{cat}")
 	public String getSubCategory(@PathVariable String cat) {
-		String result = "";
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.registerModule(new Jdk8Module());
-
-		List<Category> subCategoryList = categoryService.getSubCategory(cat);
-		// System.out.println(subCategoryList.get());
-
-		try {
-
-			result = mapper.writeValueAsString(subCategoryList);
-
-		} catch (Exception e) {
-
-		}
-
-		return result;
+		return ProjectUtility.getSubCategory(cat);
 	}
 
 	/**
@@ -96,22 +73,7 @@ public class RestApiController {
 	 */
 	@RequestMapping("subcategory/{cat}/{scat}")
 	public String getSSubCategory(@PathVariable String cat, @PathVariable String scat) {
-		String result = "";
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.registerModule(new Jdk8Module());
-
-		List<Category> sSubCategoryList = categoryService.getsSubCategory(cat, scat);
-		// System.out.println(subCategoryList.get());
-
-		try {
-
-			result = mapper.writeValueAsString(sSubCategoryList);
-
-		} catch (Exception e) {
-
-		}
-
-		return result;
+		return ProjectUtility.getSSubCategory(cat, scat);
 	}
 
 }

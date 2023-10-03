@@ -37,6 +37,10 @@ public class LendStatus {
 	public static final String CODE_9 = "9";
 
 	/**
+	 * 持出不可
+	 */
+	public static final String CODE_10 = "10";
+	/**
 	 * 破棄
 	 */
 	public static final String CODE_99 = "99";
@@ -48,12 +52,7 @@ public class LendStatus {
 	private String code;
 
 	/**
-	 * 貸出状態
-	 * 0:保管中
-	 * 1:貸出中
-	 * 2:長期貸し出し中
-	 * 9:修理・故障中
-	 * 99:破棄
+	 * 貸出状態 0:保管中 1:貸出中 2:長期貸し出し中 9:修理・故障中 99:破棄
 	 */
 	private String lendStatus;
 }

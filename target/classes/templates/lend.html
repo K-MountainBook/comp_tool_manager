@@ -11,7 +11,7 @@
 			<form th:object="${searchform}" th:action="@{/lend}" th:method="POST">
 				<div class="row">
 					<div class="col mb-3">
-						<label th:for="category">大分類</label> <select th:field="*{category}" th:id="*{category}" class="form-select" aria-label="備品カテゴリ">
+						<label th:for="category">大分類</label> <select th:field="*{category}" class="form-select" aria-label="備品カテゴリ">
 							<option value="0">選択してください</option>
 							<option th:each="category : ${categoryList}" th:value="${category.catNumber}" th:text="${category.catName}"></option>
 						</select>
@@ -19,11 +19,13 @@
 					<div class="col mb-3">
 						<label th:for="subCategory">中分類</label> <select th:field="*{subCategory}" class="form-select" aria-label="備品カテゴリ">
 							<option value="0">選択してください</option>
+							<option th:each="subcat: ${subCategoryList}" th:value="${subcat.subCatNumber}" th:text="${subcat.subCatName}"></option>
 						</select>
 					</div>
 					<div class="col mb-3">
 						<label th:for="sSubCategory">小分類</label> <select th:field="*{sSubCategory}" class="form-select" aria-label="備品カテゴリ">
 							<option value="0">選択してください</option>
+							<option th:each="sSubcat: ${sSubCategoryList}" th:value="${sSubcat.sSubCatNumber}" th:text="${sSubcat.sSubCatName}"></option>
 						</select>
 					</div>
 				</div>
@@ -36,10 +38,16 @@
 	<div th:replace="~{footer :: footer}"></div>
 	<script>
 
-		let cat = document.querySelector('#category')
-		let scat = document.querySelector('#subCategory')
-		let sscat = document.querySelector('#sSubCategory')
-		
+		window.addEventListener('pageshow', () => {
+			if (performance.getEntriesByType("navigation")[0].type === 'back_forward') {
+				location.reload();
+			}
+		});
+
+		let cat = document.querySelector('#category');
+		let scat = document.querySelector('#subCategory');
+		let sscat = document.querySelector('#sSubCategory');
+			
 		// 中分類の設定
 		cat.onchange = event =>{
 			// console.log(cat.options[cat.selectedIndex].value);
@@ -63,6 +71,6 @@
 			console.log(scat.options[scat.selectedIndex].value)
 			getSub2Category(cat.options[cat.selectedIndex].value, scat.options[scat.selectedIndex].value);
 		}
-		</script>
+	</script>
 </body>
 </html>

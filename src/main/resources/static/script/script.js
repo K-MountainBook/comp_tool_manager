@@ -52,7 +52,7 @@ function getSub2Category(subcode, subsubcode) {
 			select_form.appendChild(createOptionItem('選択してください', '0'));
 			for (jsonItem of JSON.parse(jsonResult)) {
 				console.log(jsonItem);
-				select_form.appendChild(createOptionItem(jsonItem.subCatName, jsonItem.subCatNumber));
+				select_form.appendChild(createOptionItem(jsonItem.ssubCatName, jsonItem.ssubCatNumber));
 			}
 		}
 	}

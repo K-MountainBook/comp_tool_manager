@@ -11,7 +11,7 @@
 				<!-- LendID -->
 				<div class="col mb-3">
 					<label th:for="lendId">備品ID（自動採番）</label>
-					<input type="text" th:field="*{lendId}" th:id="*{lendId}" class="form-control">
+					<input type="text" th:field="*{lendId}" class="form-control">
 				</div>
 				<!-- カテゴリ -->
 				<div class="col mb-3">
@@ -23,16 +23,13 @@
 				<div class="col mb-3">
 					<label th:for="category">中分類</label> <select th:field="*{subCategory}" class="form-control">
 						<option value="0">選択してください</option>
-						<option value="01">test</option>
-						<!--  option th:each="cat: ${categoryList}" th:value="${cat.subCatNumber}" th:text="${cat.subCatName}"></option> -->
+						<option th:each="subcat: ${subCategoryList}" th:value="${subcat.subCatNumber}" th:text="${subcat.subCatName}"></option>
 					</select>
 				</div>
 				<div class="col mb-3">
 					<label th:for="category">小分類</label> <select th:field="*{sSubCategory}" class="form-control">
 						<option value="0">選択してください</option>
-						<option value="01">test</option>
-						<!-- option th:each="cat: ${categoryList}" th:value="${cat.sSubCatNumber}" th:text="${cat.sSubCatName}">
-						</option> -->
+						<option th:each="sSubcat: ${sSubCategoryList}" th:value="${sSubcat.sSubCatNumber}" th:text="${sSubcat.sSubCatName}"></option>
 					</select>
 				</div>
 			</div>

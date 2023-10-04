@@ -12,4 +12,11 @@ spring:
       enabled: true
   jpa:
     open-in-view: false
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          no-cache: false
+          
+        
 

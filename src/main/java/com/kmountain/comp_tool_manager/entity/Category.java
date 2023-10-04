@@ -3,6 +3,8 @@ package com.kmountain.comp_tool_manager.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -31,6 +33,8 @@ public class Category {
 
 	private String sSubCatName;
 
-	private String prefixNumber;
+	@OneToOne
+	@JoinColumn(name = "prefixNumber", referencedColumnName = "category")
+	private NumberingMaster numberingMaster;
 
 }

@@ -11,6 +11,8 @@ import com.kmountain.comp_tool_manager.entity.CategoryKey;
 import com.kmountain.comp_tool_manager.repository.CategoryRepository;
 import com.kmountain.comp_tool_manager.service.CategoryService;
 import com.kmountain.comp_tool_manager.service.column.CategoryNumberOnly;
+import com.kmountain.comp_tool_manager.service.column.SSubCategoryNumberOnly;
+import com.kmountain.comp_tool_manager.service.column.SubCategoryNumberOnly;
 
 @Service
 public class CategoryServiecImpl implements CategoryService {
@@ -60,6 +62,16 @@ public class CategoryServiecImpl implements CategoryService {
 	public List<CategoryNumberOnly> findCatNumberByAll() {
 		// TODO 自動生成されたメソッド・スタブ
 		return categoryRepository.findDistinctCatNumberByCatNumberLike("%");
+	}
+
+	@Override
+	public List<SubCategoryNumberOnly> findSubCatNumberByCatNumber(String cat) {
+		return categoryRepository.findDistinctSubCatNumberByCatNumber(cat);
+	}
+
+	@Override
+	public List<SSubCategoryNumberOnly> findSSubCatNumberByACatNumberAndSubCatNumber(String cat, String scat) {
+		return categoryRepository.findDistinctsSubCatNumberByCatNumberAndSubCatNumber(cat, scat);
 	}
 
 }

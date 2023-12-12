@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kmountain.comp_tool_manager.form.SearchForm;
@@ -26,7 +27,7 @@ public class LendController {
 		this.categoryService = categoryService;
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@GetMapping("")
 	public ModelAndView get(ModelAndView mav, @ModelAttribute SearchForm searchForm) {
 		mav.setViewName("lend");
 
@@ -41,7 +42,7 @@ public class LendController {
 		return mav;
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@PostMapping("")
 	public ModelAndView post(ModelAndView mav, SearchForm searchForm) {
 
 		List<SubCategoryNumberOnly> subCategoryList = null;

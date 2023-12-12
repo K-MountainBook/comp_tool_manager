@@ -1,6 +1,7 @@
 package com.kmountain.comp_tool_manager.controller.api.v1;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +33,7 @@ public class RestApiController {
 	 * @param cat カテゴリ番号
 	 * @return カテゴリ番号で採番可能な番号を取得（最も低い番号を取得）
 	 */
-	@RequestMapping("numbering/{cat}")
+	@GetMapping("numbering/{cat}")
 	public String getNumbering(@PathVariable String cat) {
 		String result = "";
 
@@ -60,7 +61,7 @@ public class RestApiController {
 	 * @param cat 大分類カテゴリNo
 	 * @return JSON
 	 */
-	@RequestMapping("subcategory/{cat}")
+	@GetMapping("subcategory/{cat}")
 	public String getSubCategory(@PathVariable String cat) {
 		return ProjectUtility.getSubCategory(cat);
 	}
@@ -71,7 +72,7 @@ public class RestApiController {
 	 * @param cat 大分類カテゴリNo
 	 * @return JSON
 	 */
-	@RequestMapping("subcategory/{cat}/{scat}")
+	@GetMapping("subcategory/{cat}/{scat}")
 	public String getSSubCategory(@PathVariable String cat, @PathVariable String scat) {
 		return ProjectUtility.getSSubCategory(cat, scat);
 	}

@@ -5,9 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kmountain.comp_tool_manager.controller.bean.MessageBean;
@@ -36,7 +37,7 @@ public class LendQrController {
 		return new LendQrForm();
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@GetMapping("")
 	public ModelAndView get(ModelAndView mav) {
 
 		mav.setViewName("lendqr");
@@ -50,7 +51,7 @@ public class LendQrController {
 	 * @param qrform
 	 * @return
 	 */
-	@RequestMapping(value = "checkout", method = RequestMethod.POST)
+	@PostMapping("checkout")
 	public ModelAndView postCheckout(ModelAndView mav, LendQrForm qrform) {
 
 		String result = "";
@@ -101,7 +102,7 @@ public class LendQrController {
 	 * @param qrform
 	 * @return
 	 */
-	@RequestMapping(value = "return", method = RequestMethod.POST)
+	@PostMapping("return")
 	public ModelAndView postReturn(ModelAndView mav, LendQrForm qrform) {
 
 		String result = "";

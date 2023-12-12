@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kmountain.comp_tool_manager.entity.Tools;
@@ -29,7 +30,7 @@ public class RemoveController {
 		return new RemoveForm();
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@GetMapping("")
 	public ModelAndView get(ModelAndView mav) {
 
 		List<Tools> toolAll = tools_service.findAll();
@@ -47,7 +48,7 @@ public class RemoveController {
 	 * @param rf
 	 * @return
 	 */
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@PostMapping("")
 	public ModelAndView post(ModelAndView mav, RemoveForm rf) {
 
 		// System.out.println(rf);
@@ -72,7 +73,7 @@ public class RemoveController {
 	 * @param rf
 	 * @return
 	 */
-	@RequestMapping(value = "execute", method = RequestMethod.POST)
+	@PostMapping("execute")
 	public ModelAndView removeExec(ModelAndView mav, RemoveForm rf) {
 		// System.out.println(rf);
 

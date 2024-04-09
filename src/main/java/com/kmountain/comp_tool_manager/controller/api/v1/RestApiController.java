@@ -1,10 +1,6 @@
 package com.kmountain.comp_tool_manager.controller.api.v1;
 
-<<<<<<< HEAD
-=======
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
->>>>>>> 63d1c9b68ff097b1f3da5c9878cd007592d0dce8
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

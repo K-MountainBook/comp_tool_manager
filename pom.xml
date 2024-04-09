@@ -6,11 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-<<<<<<< HEAD
 		<version>3.2.0</version>
-=======
-		<version>3.1.6</version>
->>>>>>> 63d1c9b68ff097b1f3da5c9878cd007592d0dce8
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.k-mountain</groupId>

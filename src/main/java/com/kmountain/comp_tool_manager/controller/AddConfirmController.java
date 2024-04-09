@@ -2,10 +2,9 @@ package com.kmountain.comp_tool_manager.controller;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kmountain.comp_tool_manager.entity.LendStatus;
@@ -36,7 +35,6 @@ public class AddConfirmController {
 
 	private final NumberingMasterService numberingMasterService;
 
-	@Autowired
 	public AddConfirmController(LendService lendService, LendStatusService lendStatusService,
 			SpecificationService specificationService, NumberingMasterService numberingMasterService) {
 		this.lendService = lendService;
@@ -47,7 +45,7 @@ public class AddConfirmController {
 
 	/**
 	 */
-	@RequestMapping(value = "register", method = RequestMethod.POST)
+	@PostMapping("register")
 	public ModelAndView registerPost(ModelAndView mav, AddForm form) {
 
 		// 新規登録なので未貸し出しの状態のステータスをリテラルで取得。

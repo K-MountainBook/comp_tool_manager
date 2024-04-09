@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kmountain.comp_tool_manager.entity.Category;
@@ -39,7 +40,7 @@ public class AddController {
 	 * @param mav ModelAndView
 	 * @return ModelAndView(view name : add)
 	 */
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@GetMapping("")
 	public ModelAndView get(ModelAndView mav, @ModelAttribute("tool") AddForm form) {
 		mav.setViewName("add");
 
@@ -58,7 +59,7 @@ public class AddController {
 	 * @param form
 	 * @return
 	 */
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@PostMapping("")
 	public ModelAndView post(ModelAndView mav, @ModelAttribute("tool") AddForm form) {
 		// System.out.println(form);
 		// トグルスイッチONがTrue

@@ -1,6 +1,5 @@
 package com.kmountain.comp_tool_manager.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kmountain.comp_tool_manager.entity.NumberingMaster;
@@ -12,7 +11,6 @@ public class NumberingMasterServiceImpl implements NumberingMasterService {
 
 	private final NumberingMasterRepository numberingMasterRepository;
 
-	@Autowired
 	public NumberingMasterServiceImpl(NumberingMasterRepository numberingMasterRepository) {
 		this.numberingMasterRepository = numberingMasterRepository;
 	}

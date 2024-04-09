@@ -1,6 +1,5 @@
 package com.kmountain.comp_tool_manager.controller.api.v1;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +20,6 @@ public class RestApiController {
 
 	private final NumberingMasterService numberingMasterService;
 
-	@Autowired
 	public RestApiController(NumberingMasterService numberingMasterService) {
 		this.numberingMasterService = numberingMasterService;
 	}

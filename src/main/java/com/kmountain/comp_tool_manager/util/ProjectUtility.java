@@ -31,7 +31,7 @@ public class ProjectUtility {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(string);
-		sb.append(String.format("%04d", number));
+		sb.append("%04d".formatted(number));
 
 		return sb.toString();
 	}

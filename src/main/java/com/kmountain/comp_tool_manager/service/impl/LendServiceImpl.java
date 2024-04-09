@@ -2,7 +2,6 @@ package com.kmountain.comp_tool_manager.service.impl;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kmountain.comp_tool_manager.entity.LendStatus;
@@ -16,7 +15,6 @@ public class LendServiceImpl implements LendService {
 
 	private final ToolsRepository toolsRepository;
 
-	@Autowired
 	public LendServiceImpl(ToolsRepository toolsRepository) {
 		this.toolsRepository = toolsRepository;
 	}
@@ -66,7 +64,7 @@ public class LendServiceImpl implements LendService {
 		boolean result = false;
 		toolsRepository.save(tools);
 		Optional<Tools> findSet = toolsRepository.findById(tools.getLendId());
-		if (!findSet.isEmpty()) {
+		if (findSet.isPresent()) {
 			result = true;
 		}
 		return result;

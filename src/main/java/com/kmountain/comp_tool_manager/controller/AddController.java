@@ -2,6 +2,8 @@ package com.kmountain.comp_tool_manager.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +36,8 @@ public class AddController {
 	@Autowired
 	NumberingMasterService numberingMasterService;
 
+	private static final Logger log = LoggerFactory.getLogger(AddController.class);
+
 	/**
 	 * method get
 	 * 
@@ -46,7 +50,7 @@ public class AddController {
 
 		List<CategoryNumberOnly> category = categoryService.findCatNumberByAll();
 
-//		System.out.println(category.get(0).getCatNumber());
+		//		System.out.println(category.get(0).getCatNumber());
 
 		mav.addObject("categoryList", category);
 
@@ -63,7 +67,7 @@ public class AddController {
 	public ModelAndView post(ModelAndView mav, @ModelAttribute("tool") AddForm form) {
 		// System.out.println(form);
 		// トグルスイッチONがTrue
-		System.out.println(form.isLend_ng());
+		log.info("トグルスイッチ:" + form.isLend_ng());
 
 		List<SubCategoryNumberOnly> subCategoryList = null;
 		List<SSubCategoryNumberOnly> sSubCategoryList = null;
@@ -79,8 +83,8 @@ public class AddController {
 						form.getSubCategory());
 
 				for (SSubCategoryNumberOnly i : sSubCategoryList) {
-					System.out.println(i.getsSubCatName());
-					System.out.println(i.getsSubCatNumber());
+					log.info("サブカテゴリ名:" + i.getsSubCatName());
+					log.info("サブカテゴリ番号:" + i.getsSubCatNumber());
 				}
 			}
 

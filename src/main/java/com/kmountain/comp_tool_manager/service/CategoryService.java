@@ -17,7 +17,7 @@ public interface CategoryService {
 
 	public Category save(Category catUpdateData);
 
-	public List<Category> getSubCategory(String cat);
+	public List<SubCategoryNumberOnly> getSubCategory(String cat);
 
 	public List<Category> getsSubCategory(String cat, String scat);
 

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.kmountain.comp_tool_manager.entity.Category;
 import com.kmountain.comp_tool_manager.service.CategoryService;
+import com.kmountain.comp_tool_manager.service.column.SubCategoryNumberOnly;
 
 @Component
 public class ProjectUtility {
@@ -73,7 +74,7 @@ public class ProjectUtility {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(new Jdk8Module());
 
-		List<Category> subCategoryList = categoryService.getSubCategory(cat);
+		List<SubCategoryNumberOnly> subCategoryList = categoryService.getSubCategory(cat);
 		// System.out.println(subCategoryList.get());
 
 		try {

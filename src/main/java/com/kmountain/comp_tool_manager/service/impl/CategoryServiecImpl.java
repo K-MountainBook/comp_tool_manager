@@ -42,9 +42,9 @@ public class CategoryServiecImpl implements CategoryService {
 	}
 
 	@Override
-	public List<Category> getSubCategory(String cat) {
+	public List<SubCategoryNumberOnly> getSubCategory(String cat) {
 		// TODO 自動生成されたメソッド・スタブ
-		List<Category> result = categoryRepository.findBycatNumber(cat);
+		List<SubCategoryNumberOnly> result = categoryRepository.findDistinctSubCatNumberByCatNumber(cat);
 
 		return result;
 

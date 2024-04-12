@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kmountain.comp_tool_manager.entity.Tools;
 import com.kmountain.comp_tool_manager.form.SearchForm;
 import com.kmountain.comp_tool_manager.service.CategoryService;
 import com.kmountain.comp_tool_manager.service.column.CategoryNumberOnly;
@@ -43,31 +44,41 @@ public class LendController {
 	@PostMapping("")
 	public ModelAndView post(ModelAndView mav, SearchForm searchForm) {
 
+		// TODO 入力された項目から検索を行う。
+		String cat = searchForm.getCategory();
+		String subCat = searchForm.getSubCategory();
+		String sSubCat = searchForm.getSSubCategory();
+		
+		List<Tools> toolsList = null;
+		
 		List<SubCategoryNumberOnly> subCategoryList = null;
 		List<SSubCategoryNumberOnly> sSubCategoryList = null;
+		
 
 		// 大分類の番号と名前を取得
 		List<CategoryNumberOnly> category = categoryService.findCatNumberByAll();
 
 		// 中分類と小分類が設定されていた場合はその値をセットできるようにするためデータを取り出す。
 		if (!searchForm.getCategory().equals("0")) {
-			subCategoryList = categoryService.findSubCatNumberByCatNumber(searchForm.getCategory());
+			subCategoryList = categoryService.findSubCatNumberByCatNumber(cat);
 
 			if (!searchForm.getSubCategory().equals("0")) {
 				sSubCategoryList = categoryService.findSSubCatNumberByACatNumberAndSubCatNumber(
-						searchForm.getCategory(), searchForm.getSubCategory());
+						cat, subCat);
 
-				for (SSubCategoryNumberOnly i : sSubCategoryList) {
-					System.out.println(i.getsSubCatName());
-					System.out.println(i.getsSubCatNumber());
-				}
+//				for (SSubCategoryNumberOnly i : sSubCategoryList) {
+//					System.out.println(i.getsSubCatName());
+//					System.out.println(i.getsSubCatNumber());
+//				}
 			}
 
 		}
-		mav.addObject("searchform", searchForm);
-		mav.addObject("categoryList", category);
-		mav.addObject("subCategoryList", subCategoryList);
-		mav.addObject("sSubCategoryList", sSubCategoryList);
+		
+		// templateに渡すデータ
+		mav.addObject("searchform", searchForm);				// 検索フォーム値
+		mav.addObject("categoryList", category);				// 大項目リスト
+		mav.addObject("subCategoryList", subCategoryList);		// 中項目リスト
+		mav.addObject("sSubCategoryList", sSubCategoryList);	// 小項目リスト
 
 		mav.setViewName("lend");
 

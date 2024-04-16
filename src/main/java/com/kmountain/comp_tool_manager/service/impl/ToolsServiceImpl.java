@@ -31,8 +31,8 @@ public class ToolsServiceImpl implements ToolsService {
 	 * 備品の検索(id指定)
 	 */
 	@Override
-	public List<Tools> findToolsByIds(List<String> items) {
-		return toolsRepository.findAllById(items);
+	public List<Tools> findToolsByIdsStartingWith(String items) {
+		return toolsRepository.findBylendIdStartingWith(items);
 	}
 
 	/**
@@ -51,5 +51,10 @@ public class ToolsServiceImpl implements ToolsService {
 	public Tools updateToolInfo(Tools tools) {
 		Tools result = toolsRepository.save(tools);
 		return result;
+	}
+
+	@Override
+	public List<Tools> findToolsByIdsIn(List<String> items) {
+		return toolsRepository.findBylendIdIn(items);
 	}
 }

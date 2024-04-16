@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kmountain.comp_tool_manager.entity.Tools;
 import com.kmountain.comp_tool_manager.form.SearchForm;
 import com.kmountain.comp_tool_manager.service.CategoryService;
+import com.kmountain.comp_tool_manager.service.ToolsService;
 import com.kmountain.comp_tool_manager.service.column.CategoryNumberOnly;
 import com.kmountain.comp_tool_manager.service.column.SSubCategoryNumberOnly;
 import com.kmountain.comp_tool_manager.service.column.SubCategoryNumberOnly;
@@ -22,8 +23,11 @@ public class LendController {
 
 	CategoryService categoryService;
 
-	public LendController(CategoryService categoryService) {
+	ToolsService toolsService;
+
+	public LendController(CategoryService categoryService, ToolsService toolsService) {
 		this.categoryService = categoryService;
+		this.toolsService = toolsService;
 	}
 
 	@GetMapping("")
@@ -44,41 +48,51 @@ public class LendController {
 	@PostMapping("")
 	public ModelAndView post(ModelAndView mav, SearchForm searchForm) {
 
+		System.out.println(("lendController:検索" + ""));
+
 		// TODO 入力された項目から検索を行う。
 		String cat = searchForm.getCategory();
 		String subCat = searchForm.getSubCategory();
 		String sSubCat = searchForm.getSSubCategory();
-		
+
 		List<Tools> toolsList = null;
+
+		String id = cat;
+
+		if (subCat.equals("0")) {
+			id.concat(subCat);
+			if (sSubCat.equals("0")) {
+				id.concat(sSubCat);
+			}
+		}
+
+		// 検索条件をもとに検索を行う
+		toolsList = toolsService.findToolsByIdsStartingWith(id);
 		
+		System.out.println(toolsList.toString());
+
 		List<SubCategoryNumberOnly> subCategoryList = null;
 		List<SSubCategoryNumberOnly> sSubCategoryList = null;
-		
 
 		// 大分類の番号と名前を取得
 		List<CategoryNumberOnly> category = categoryService.findCatNumberByAll();
 
 		// 中分類と小分類が設定されていた場合はその値をセットできるようにするためデータを取り出す。
-		if (!searchForm.getCategory().equals("0")) {
+		if (!cat.equals("0")) {
 			subCategoryList = categoryService.findSubCatNumberByCatNumber(cat);
 
-			if (!searchForm.getSubCategory().equals("0")) {
+			if (!subCat.equals("0")) {
 				sSubCategoryList = categoryService.findSSubCatNumberByACatNumberAndSubCatNumber(
 						cat, subCat);
-
-//				for (SSubCategoryNumberOnly i : sSubCategoryList) {
-//					System.out.println(i.getsSubCatName());
-//					System.out.println(i.getsSubCatNumber());
-//				}
 			}
 
 		}
-		
+
 		// templateに渡すデータ
-		mav.addObject("searchform", searchForm);				// 検索フォーム値
-		mav.addObject("categoryList", category);				// 大項目リスト
-		mav.addObject("subCategoryList", subCategoryList);		// 中項目リスト
-		mav.addObject("sSubCategoryList", sSubCategoryList);	// 小項目リスト
+		mav.addObject("searchform", searchForm); // 検索フォーム値
+		mav.addObject("categoryList", category); // 大項目リスト
+		mav.addObject("subCategoryList", subCategoryList); // 中項目リスト
+		mav.addObject("sSubCategoryList", sSubCategoryList); // 小項目リスト
 
 		mav.setViewName("lend");
 

@@ -1,5 +1,7 @@
 package com.kmountain.comp_tool_manager.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +11,10 @@ import com.kmountain.comp_tool_manager.entity.Tools;
 public interface ToolsRepository extends JpaRepository<Tools, String> {
 
 	//	List<Tools> findBySpecification(Specification specification);
+
+	List<Tools> findBylendIdStartingWith(String id);
+	
+	List<Tools> findBylendIdIn(List<String> id);
+	
+	
 }

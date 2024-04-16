@@ -52,7 +52,7 @@ public class RemoveController {
 		// System.out.println(rf);
 		List<String> items = rf.getRemoveItem();
 
-		List<Tools> removeItems = tools_service.findToolsByIds(items);
+		List<Tools> removeItems = tools_service.findToolsByIdsIn(items);
 
 		//		for (Tools removeItem : removeItems) {
 		//			System.out.println(removeItem);

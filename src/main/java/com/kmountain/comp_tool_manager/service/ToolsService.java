@@ -12,6 +12,8 @@ public interface ToolsService {
 
 	public Tools updateToolInfo(Tools tools);
 
-	public List<Tools> findToolsByIds(List<String> items);
+	public List<Tools> findToolsByIdsStartingWith(String items);
+	
+	public List<Tools> findToolsByIdsIn(List<String> items);
 
 }

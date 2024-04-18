@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
+
 <head th:replace="~{header :: common_header(~{::title})}">
-<title>備品管理システム - 貸出/返却</title>
+	<title>備品管理システム - 貸出/返却</title>
 </head>
+
 <body lang="ja">
 	<div th:replace="~{header :: header}"></div>
 	<div class="container">
@@ -11,21 +13,27 @@
 			<form th:object="${searchform}" th:action="@{/lend}" th:method="POST">
 				<div class="row">
 					<div class="col mb-3">
-						<label th:for="category">大分類</label> <select th:field="*{category}" class="form-select" aria-label="備品カテゴリ">
+						<label th:for="category">大分類</label> <select th:field="*{category}" class="form-select"
+							aria-label="備品カテゴリ">
 							<option value="0">選択してください</option>
-							<option th:each="category : ${categoryList}" th:value="${category.catNumber}" th:text="${category.catName}"></option>
+							<option th:each="category : ${categoryList}" th:value="${category.catNumber}"
+								th:text="${category.catName}"></option>
 						</select>
 					</div>
 					<div class="col mb-3">
-						<label th:for="subCategory">中分類</label> <select th:field="*{subCategory}" class="form-select" aria-label="備品カテゴリ">
+						<label th:for="subCategory">中分類</label> <select th:field="*{subCategory}" class="form-select"
+							aria-label="備品カテゴリ">
 							<option value="0">選択してください</option>
-							<option th:each="subcat: ${subCategoryList}" th:value="${subcat.subCatNumber}" th:text="${subcat.subCatName}"></option>
+							<option th:each="subcat: ${subCategoryList}" th:value="${subcat.subCatNumber}"
+								th:text="${subcat.subCatName}"></option>
 						</select>
 					</div>
 					<div class="col mb-3">
-						<label th:for="sSubCategory">小分類</label> <select th:field="*{sSubCategory}" class="form-select" aria-label="備品カテゴリ">
+						<label th:for="sSubCategory">小分類</label> <select th:field="*{sSubCategory}" class="form-select"
+							aria-label="備品カテゴリ">
 							<option value="0">選択してください</option>
-							<option th:each="sSubcat: ${sSubCategoryList}" th:value="${sSubcat.sSubCatNumber}" th:text="${sSubcat.sSubCatName}"></option>
+							<option th:each="sSubcat: ${sSubCategoryList}" th:value="${sSubcat.sSubCatNumber}"
+								th:text="${sSubcat.sSubCatName}"></option>
 						</select>
 					</div>
 				</div>
@@ -34,6 +42,32 @@
 				</div>
 			</form>
 		</div>
+		<th:block th:if="${toolsList != null && toolsList.size != 0} ">
+			<div id="resultArea">
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>備品番号</th>
+							<th>ステータス</th>
+							<th>管理名</th>
+							<th>備品概要</th>
+							<th>保管場所</th>
+						</tr>
+					</thead>
+					<tbody>
+						<th:block th:each="row : ${toolsList}">
+							<tr>
+								<td th:text="${row.lendId}"></td>
+								<td th:text="${row.lendStatus.lendStatus}"></td>
+								<td th:text="${row.managementName}"></td>
+								<td th:text="${row.anotherInfo}"></td>
+								<td th:text="${row.keepPlace}"></td>
+							</tr>
+						</th:block>
+					</tbody>
+				</table>
+			</div>
+		</th:block>
 	</div>
 	<div th:replace="~{footer :: footer}"></div>
 	<script>
@@ -47,11 +81,11 @@
 		let cat = document.querySelector('#category');
 		let scat = document.querySelector('#subCategory');
 		let sscat = document.querySelector('#sSubCategory');
-			
+
 		// 中分類の設定
-		cat.onchange = event =>{
+		cat.onchange = event => {
 			// console.log(cat.options[cat.selectedIndex].value);
-			if(cat.options[cat.selectedIndex].value == 0){
+			if (cat.options[cat.selectedIndex].value == 0) {
 				removeAll(scat.querySelectorAll('option'));
 				removeAll(sscat.querySelectorAll('option'));
 				scat.appendChild(createOptionItem('選択してください', '0'));
@@ -60,10 +94,10 @@
 			}
 			getSubCategory(cat.options[cat.selectedIndex].value);
 		}
-		
+
 		// 小分類の設定
-		scat.onchange = event =>{
-			if(scat.options[scat.selectedIndex].value == 0){
+		scat.onchange = event => {
+			if (scat.options[scat.selectedIndex].value == 0) {
 				removeAll(sscat.querySelectorAll('option'));
 				sscat.appendChild(createOptionItem('選択してください', '0'));
 				return false;
@@ -73,4 +107,5 @@
 		}
 	</script>
 </body>
+
 </html>

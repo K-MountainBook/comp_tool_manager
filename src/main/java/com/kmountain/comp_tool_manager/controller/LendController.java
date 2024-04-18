@@ -59,16 +59,21 @@ public class LendController {
 
 		String id = cat;
 
-		if (subCat.equals("0")) {
-			id.concat(subCat);
-			if (sSubCat.equals("0")) {
-				id.concat(sSubCat);
+		if (!subCat.equals("0")) {
+			id = id.concat(subCat);
+			if (!sSubCat.equals("0")) {
+				id = id.concat(sSubCat);
 			}
 		}
 
+		//		System.out.println(cat);
+		//		System.out.println(subCat);
+		//		System.out.println(sSubCat);
+		//		System.out.println("lendID:" + id);
+		
 		// 検索条件をもとに検索を行う
 		toolsList = toolsService.findToolsByIdsStartingWith(id);
-		
+
 		System.out.println(toolsList.toString());
 
 		List<SubCategoryNumberOnly> subCategoryList = null;
@@ -93,6 +98,7 @@ public class LendController {
 		mav.addObject("categoryList", category); // 大項目リスト
 		mav.addObject("subCategoryList", subCategoryList); // 中項目リスト
 		mav.addObject("sSubCategoryList", sSubCategoryList); // 小項目リスト
+		mav.addObject("toolsList", toolsList);
 
 		mav.setViewName("lend");
 

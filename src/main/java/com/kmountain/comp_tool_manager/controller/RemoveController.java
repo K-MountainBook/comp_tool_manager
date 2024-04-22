@@ -2,6 +2,8 @@ package com.kmountain.comp_tool_manager.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,11 +31,12 @@ public class RemoveController {
 	}
 
 	@GetMapping("")
-	public ModelAndView get(ModelAndView mav) {
+	public ModelAndView get(Pageable pageable, ModelAndView mav) {
 
-		List<Tools> toolAll = tools_service.findAll();
+		Page<Tools> toolAll = tools_service.findAll(pageable);
 
 		mav.addObject("data", toolAll);
+		mav.addObject("dataPage", toolAll.getContent());
 
 		mav.setViewName("remove");
 

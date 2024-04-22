@@ -2,11 +2,14 @@ package com.kmountain.comp_tool_manager.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kmountain.comp_tool_manager.entity.Tools;
@@ -24,6 +27,8 @@ public class LendController {
 	CategoryService categoryService;
 
 	ToolsService toolsService;
+	
+	private static final Logger log = LoggerFactory.getLogger(LendController.class);
 
 	public LendController(CategoryService categoryService, ToolsService toolsService) {
 		this.categoryService = categoryService;
@@ -70,7 +75,7 @@ public class LendController {
 		//		System.out.println(subCat);
 		//		System.out.println(sSubCat);
 		//		System.out.println("lendID:" + id);
-		
+
 		// 検索条件をもとに検索を行う
 		toolsList = toolsService.findToolsByIdsStartingWith(id);
 
@@ -101,6 +106,28 @@ public class LendController {
 		mav.addObject("toolsList", toolsList);
 
 		mav.setViewName("lend");
+
+		return mav;
+	}
+
+	/**
+	 * 貸出処理をするために確認画面に遷移する
+	 * @param lendid	貸出対象の管理ID
+	 * @param mav		もでるあんどびゅー
+	 * @return			もでるあんどびゅー（確認Viewを指定）
+	 */
+	@GetMapping(params = { "lendid" })
+	public ModelAndView lendProcess(@RequestParam String lendid, ModelAndView mav) {
+		log.debug("lendid in lendProcess:" + lendid);
+		
+		
+		// 登録されている職員の一覧を抽出
+		
+		// 選択された備品の詳細情報を取得
+		
+		// 内容をObjectに格納
+
+		mav.setViewName("lendConfirm");
 
 		return mav;
 	}

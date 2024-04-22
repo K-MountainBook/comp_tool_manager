@@ -57,7 +57,7 @@
 					<tbody>
 						<th:block th:each="row : ${toolsList}">
 							<tr>
-								<td th:text="${row.lendId}"></td>
+								<td><a th:href="@{'?lendid='+${row.lendId}}" th:text="${row.lendId}"></a></td>
 								<td th:text="${row.lendStatus.lendStatus}"></td>
 								<td th:text="${row.managementName}"></td>
 								<td th:text="${row.anotherInfo}"></td>

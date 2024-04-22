@@ -2,6 +2,8 @@ package com.kmountain.comp_tool_manager.service.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kmountain.comp_tool_manager.entity.Tools;
@@ -23,8 +25,8 @@ public class ToolsServiceImpl implements ToolsService {
 	 * @return List{@literal <}{@link Tools}{@literal }>
 	 * 
 	 */
-	public List<Tools> findAll() {
-		return toolsRepository.findAll();
+	public Page<Tools> findAll(Pageable pageable) {
+		return toolsRepository.findAll(pageable);
 	}
 
 	/**
@@ -57,4 +59,5 @@ public class ToolsServiceImpl implements ToolsService {
 	public List<Tools> findToolsByIdsIn(List<String> items) {
 		return toolsRepository.findBylendIdIn(items);
 	}
+
 }

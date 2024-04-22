@@ -1,8 +1,8 @@
 package com.kmountain.comp_tool_manager.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,13 +19,13 @@ public class ManageController {
 	ToolsService tools_service;
 
 	@GetMapping("")
-	public String get(Model model) {
+	public String get(Pageable pageable, Model model) {
 		String template = "manage";
 
-		List<Tools> toolAll = tools_service.findAll();
+		Page<Tools> toolAll = tools_service.findAll(pageable);
 
 		model.addAttribute("data", toolAll);
-		
+
 		return template;
 	}
 

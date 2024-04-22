@@ -2,11 +2,14 @@ package com.kmountain.comp_tool_manager.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.kmountain.comp_tool_manager.entity.Tools;
 
 public interface ToolsService {
 
-	public List<Tools> findAll();
+	public Page<Tools> findAll(Pageable pageable);
 
 	public void removeTools(List<String> itemIds);
 

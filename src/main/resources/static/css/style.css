@@ -112,3 +112,14 @@ input .text-center{
 	cursor: pointer;
 	
 }
+
+.paging {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 1rem;
+    list-style-type: none;
+}
+
+.paging li{
+	display: inline-block;
+}

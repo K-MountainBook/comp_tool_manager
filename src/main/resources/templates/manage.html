@@ -62,14 +62,15 @@
 				</table>
 			</th:block>
 			<div>
-				<span th:if="${data.first}">&lt;&lt;前</span>
+				<ul class="paging">
+					<span th:if="${data.first}">&lt;&lt;前</span>
+					<li th:each="i:${#numbers.sequence(0, data.totalPages - 1)}">
+						<span th:text="${i + 1}"></span>
+					</li>
+					<span th:if="${data.last}">後&gt;&gt;</span>
+				</ul>
 			</div>
 		</div>
-		<!-- 
-		<th:block th:each="row : ${data}">
-			<div th:text="${row}"></div>
-		</th:block>
-		 -->
 	</div>
 	<div th:replace="~{footer :: footer}"></div>
 </body>

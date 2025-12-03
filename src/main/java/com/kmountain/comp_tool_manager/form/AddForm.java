@@ -1,6 +1,7 @@
 package com.kmountain.comp_tool_manager.form;
 
-import jakarta.persistence.Id;
+import javax.persistence.Id;
+
 import lombok.Data;
 
 @Data
